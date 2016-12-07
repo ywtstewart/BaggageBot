@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+#input {
+	vertical-align:bottom;
+	
+}
+
+#conversation {
+	align: top; 
+	border: 2px; 
+	position:fixed; 
+	
+} 
+
+#response  text{
+	font-weight: bold;
+}
