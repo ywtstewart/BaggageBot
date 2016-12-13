@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>BaggageBot</title>
+        <style type="text/css" src="css/index.css"> </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <!--<script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+       
+       <!-- Script tot access API  to send questions & retrieve responses -->
+       <script type="text/javascript"> 
+		
+		var accessToken = "e2fa5b6f7adf4b55aeb33a228d8691ca";
+		var baseUrl = "https://api.api.ai/v1/";
+		var respond; 
+		var sessionID = Math.random()*1000000;
+		$(document).ready(function() {
+			$("#send").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+					var question = "User : " + $("#input").val();
+					//var question_ = $("<p></p>").text(temp); 
+					setResponse(question);
+					
+				}
+			});
+			
+		});
+		
+		
+		
+		
+		
+		function setInput(text) {
+			$("#input").val(text);
+		
+			
+			send();
+		}
+		
+		function send() {
+			var text = $("#input").val();
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query?v=20161208",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ query: text, lang: "en", sessionId: sessionID }),
+				success: function(data) {
+				   	
+					var response = "Anna bot : " + data.result.fulfillment.speech;
+					setResponse(response);
+				},
+				error: function() {
+					setResponse("Internal Server Error");
+				}
+			});
+			setResponse("");
+		}
+		function setResponse(val) {
+			
+			$("#response").append(val+ "\n \n" );
+			
+			
+		}</script>
+    </head>
+    <body>
+    <div id="conversation" class="conversation" width=100% height=80%>
+    
+    <textarea id="response" width=100% height="100" cols="40" rows="20" maxlength = "10" readonly ></textarea>
+    </div>
+   
+    <span> <div id="form"  width=100% height="10">
+    <input id="input" type="text" value="" width=80% /> <button id="send" type="button" onClick="submit">Send</button>
+    </div></span>
+    
+        </body>
+</html>

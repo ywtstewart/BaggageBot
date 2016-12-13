@@ -1,18 +1,57 @@
 @charset "utf-8";
 /* CSS Document */
 
-#input {
-	vertical-align:bottom;
-	
-}
 
-#conversation {
-	align: top; 
-	border: 2px; 
-	position:fixed; 
+#page-header h1{
 	
-} 
-
-#response  text{
 	font-weight: bold;
+	font-size: 24px;
+	text-align:center;
+	/*background-color: rgba(0,0,0,1.00);*/
+	color: #FFFFFFF;
+	}
+
+body { 
+background-color: #A2A2A2;
 }
+#footer {
+	width: 100vw;	
+	align: bottom; 
+	position:fixed;
+	bottom:0;	
+}
+#input {
+	width:80vw; 
+    
+}
+#submit {
+	width: 40vw; 
+}
+#chat {
+	width: 100vw;
+	
+	display:block;
+	position:relative;
+	overflow-x: hidden; 
+	margin-bottom: 10px;  
+	
+	background-color:rgba(255,255,255,1.00);
+	
+	
+	} 
+
+#conversation p{
+    bottom:0; 
+	padding-bottom: 0; 
+    
+	font-weight: bold; 
+	
+}
+
+#chat-frame {
+	width: 100vw;
+	height:80vh; 
+background-color: rgba(255,255,255,1.00);
+
+}
+

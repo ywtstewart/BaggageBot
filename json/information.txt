@@ -1,0 +1,37 @@
+{
+  "id": "fc168c3f-830b-445d-8c40-47af9ac71835",
+  "timestamp": "2016-12-07T14:59:12.033Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "lost bag",
+    "action": "locate.handler",
+    "actionIncomplete": false,
+    "parameters": {},
+    "contexts": [],
+    "metadata": {
+      "intentId": "8b5ae4fa-8d41-49d2-85fb-3670fe2d23c8",
+      "webhookUsed": "false",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "lost bag"
+    },
+    "fulfillment": {
+      "speech": "You can get more information at your handler",
+      "messages": [
+        {
+          "type": 0,
+          "speech": "You can get more information at your handler"
+        },
+        {
+          "type": 0,
+          "speech": ""
+        }
+      ]
+    },
+    "score": 0.55
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "407143.5484480932"
+}
