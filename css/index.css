@@ -61,12 +61,9 @@ overflow: hidden;
 	width:100vw;
 }
 
-input [type: button] {
-	float: right; 
-}
-
-#user{
+.user{
 	float:right;
+	
 	margin: 5px;
 	padding: 2px 5px 2px 2px;
 	
@@ -74,29 +71,37 @@ input [type: button] {
 	background-color: rgba(0,0,255,0.6);
 }
 
-#user p{
+.user p{
 	
-	margin-right: 10px;
-	margin-left:10px;
+	margin: 0 0 10px 0; 
 }
 
-#bot{
-	float: left;
+.bot{
+	/*float: left;*/
 	padding: 2px 2px 0px 5px;
 	margin:5px;
-	text-wrap:normal;	
-	background-color: rgba(206,206,206,1.0); 
 	
 	}
 	
-#bot p{
-	
-	margin-right: 10px;
-	margin-left:10px;
-	
+.bot p{
+	margin: 0 10px 15px 10px; 
+	text-wrap:normal;		
 }
 
 .bubble {
-	
 	position:relative; 
+	max-width: 49vw;
+	background: rgba(197,197,197,1.00);
+	padding:20px 2px 5px 2px; 
+	border-radius: 10px; 
+	margin-left:5px;
+}
+
+.option-button input{
+ 	float: right; 
+	padding: 2px 2px 0px 5px; 
+	margin: 10px 5px 10px 0px; 
 	
+}
+.option-button {background:#6968FF;}
+

@@ -28,6 +28,8 @@ $(document).ready(function() {
     send(text);
     clickListener();
     
+	$("#input").prop('disabled', true); 
+	$("#send").prop('disabled', true);
 
 });
 
@@ -135,10 +137,10 @@ function listeners(){
 				console.log(user);
 				switch (user){
 					
-					case "user": $("#chat").append("<span><p id='" + user + "'>" + val + "</p></span>"); break;
+					case "user": $("#chat").append("<span><div class='"+ user+ " bubble' ><p class='" + user + "'>" + val + "</p></div></span>"); break;
 					
 					
-					case "bot": $("#chat").append("<span><p id='" + user + "'>" + val + "</p></span>"); break;
+					case "bot": $("#chat").append("<span><div class='"+ user+ " bubble' ><p class='" + user + "'>" + val + "</p></div></span>"); break;
 					
 					default: console.log("unknown user"); 
 				}
@@ -179,15 +181,15 @@ function listeners(){
 		   }
 
             function renderButtons(list) {
-				$("#chat").append("<span>");
+				
                 for (i = 0; i < list.length; i++) {
                     var value = '' + list[i];
 					$("#option-button").removeAttr(value); 
 					
-                    $("#chat").append("<input type='button' id='user' value='"+ value +"'  style='width: " + list.length + "/100*width;' />").addClass("option-button");
+                    $("#chat").append("<input type='button' id='user' value='"+ value +"'/>").addClass("option-button");
 
                 }
-				$("#chat").append("</span>");
+				$("#chat").append("<br><br>");
 				panToBottom();
 
             };
@@ -197,8 +199,12 @@ function listeners(){
                 $(document).on("click", '.option-button', function(e) {
 					if (e){
                     var temp = $(e.target).val();
-					
+					switch (temp) {
+					case "keep chatting":
+						$("#input").prop('disabled', false); 						$("#send").prop('disabled', false); 										break;
+					}
                     send(temp);
+					
 					panToBottom();
                     console.log(temp);}
                 });
