@@ -4,44 +4,100 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>BaggageBot</title>
-        <style type="text/css" src="css/index.css"> </style>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <!--<script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-       
-       <!-- Script tot access API  to send questions & retrieve responses -->
-       <script type="text/javascript"> 
-		
-		var accessToken = "e2fa5b6f7adf4b55aeb33a228d8691ca";
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/index.css">
+        
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript"> 
+		 <!-- Script tot access API  to send questions & retrieve responses -->
+    	
+		 <!-- Script tot access API  to send questions & retrieve responses -->
+    	
+	var accessToken = "e2fa5b6f7adf4b55aeb33a228d8691ca";
 		var baseUrl = "https://api.api.ai/v1/";
-		var respond; 
+		
 		var sessionID = Math.random()*1000000;
+		
+		var user;
+		var text;
+		
+		// ideal version use JSON file with url to guide user to point of interest
+		var toDO = new Array("more information", "play  a game", "keep chatting"); 
+		
+		var moreInfo= new Array("Baggage information", "Netherlands information", "Weather information");
+		
 		$(document).ready(function() {
+			 text = "intro"; 
+			 send(text); 
+			 
+		
 			$("#send").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					
+					var question = "User : " + $("#input").val();
+					user = "user";
+					//var question_ = $("<p></p>").text(temp); 
+					setResponse(question, user);
+				
+				}
+			});
+			$("#input").keypress(function(event) {
 				if (event.which == 13) {
 					event.preventDefault();
 					send();
 					var question = "User : " + $("#input").val();
+					user = "user";
 					//var question_ = $("<p></p>").text(temp); 
-					setResponse(question);
+					setResponse(question, user);
+					text = $("#input").val(); 
+					send(text); 
+					
+					text = $("#input").val(''); 
+					
 					
 				}
 			});
+			$("#send").click(function(event) {
+				
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+					var question = "User : " + $("#input").val();
+					user = "user";
+					//var question_ = $("<p></p>").text(temp); 
+					setResponse(question, user);
+					
+					text = $("#input").val(); 
+					send(text); 
+					
+					text = $("#input").val(''); 
+					
+				}
+				
+				$("#chat").on('click', '#option-button', function (e) {
+				if (e){
+					var temp = $(this).val();
+					alert(temp);
+			   		send(temp); 
+					}
+			});
 			
+		   
 		});
-		
-		
-		
 		
 		
 		function setInput(text) {
 			$("#input").val(text);
-		
-			
+		    
 			send();
 		}
 		
-		function send() {
-			var text = $("#input").val();
+		function send(text) {
+			
 			$.ajax({
 				type: "POST",
 				url: baseUrl + "query?v=20161208",
@@ -54,30 +110,108 @@
 				success: function(data) {
 				   	
 					var response = "Anna bot : " + data.result.fulfillment.speech;
-					setResponse(response);
+					user = "bot"; 
+					
+					setResponse(response, user);
 				},
 				error: function() {
-					setResponse("Internal Server Error");
+				 setResponse("Internet connection/server error");
 				}
 			});
-			setResponse("");
+			//setResponse("");
 		}
-		function setResponse(val) {
+		function setResponse(val, user) {
 			
-			$("#response").append(val+ "\n \n" );
+			$("#chat").append("<p id='"+user+"'>"+ val+ "</p>" );
+			responseFilter(val); 
+		   
+		}
+		
+		function responseFilter(response) {
+			 if (response){
+				
+				if (response = "Hi I'm Anna belt! How may I help you today?"){ getToDOList(); }
+				else if (response = "What kind of information are you searching for?"){  getInfoList();}
+				
+			 }
+				
+		}
+		
+	/*	function getRecommendations(){
+			$(this).children("div:#chat").append();
+					} 
+		function getInfo(){
+			$(this).children("div:#chat").append();
+			
+		}*/
+		
+		function getToDOList(){
+			 
+			for (i = 0; i < toDO.length; i++){
+				var value  = toDO[i];
+				//var classN = value.replace(/\s/g, '');
+			$("#chat").append("<input type='button' id='option-button' class='option' type='button' value= ' "+value+ "' style='width: " + toDO.length+"/100*with' />");
+				    
+			}
 			
 			
-		}</script>
+		
+		};
+		function getInfoList(){
+			 
+			for (i = 0; i < moreInfo.length; i++){
+				var value  = moreInfo[i];
+				//var class = value.replace(/\s/g, '');
+				$("#option-button").hidden();
+			$("#chat").append("<input type='button' id='info-button' class='infobut"+i+"'type='button' type='button' value= ' "+value+ "' />");
+				    
+			}
+			
+			
+		
+		};
+		
+		$(function() {
+						$(document).on("click", "#option-button", function() {
+						
+   						var temp = $("#option-button").val(); 
+						
+    					send(temp);
+						});
+
+  					});
+		
+	
+		});
+        </script>
+        
     </head>
-    <body>
-    <div id="conversation" class="conversation" width=100% height=80%>
     
-    <textarea id="response" width=100% height="100" cols="40" rows="20" maxlength = "10" readonly ></textarea>
+    <div id="tp_One"> 
+     touch point one
+     
     </div>
-   
-    <span> <div id="form"  width=100% height="10">
-    <input id="input" type="text" value="" width=80% /> <button id="send" type="button" onClick="submit">Send</button>
-    </div></span>
     
+    <div id="wrapper" > 
+    <div id="page-header"><h1>Chatbot</h1></div>
+    <div id="content" class="content" height=90%  >
+    	
+        <div id="chat"> </div>
+    
+    </div> </div>
+           
+           <form >  
+           <span><input id="input" type="text" value="" /><button id="send" type="button" >Post</button></span>
+           </form>
+          
+            </div>
+            
+   <!--  <script type="text/javascript" src="js/index.js"></script> -->
+    
+    </div>
+            </div>
+                  
         </body>
+        
+    
 </html>

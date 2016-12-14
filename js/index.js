@@ -62,10 +62,10 @@
 					
 				}
 				
-				$("#chat").on('click', '#option-button', function (e) {
+				$("#chat").on('click', "#option-button", function (e) {
 				if (e){
-					var temp = $("#option-button").val();
-			   send(temp); 
+					var temp = $(this).val(); alert(temp);
+			   		send(temp); 
 					}
 			});
 			
