@@ -13,6 +13,7 @@
 
 body { 
 background-color: #A2A2A2;
+overflow: hidden; 
 }
 #footer {
 	width: 100vw;	
@@ -28,14 +29,12 @@ background-color: #A2A2A2;
 	width: 40vw; 
 }
 #chat {
-	width: 100vw;
+	width: 95vw;
 	height: 80vh;
 	display:block;
 	position:relative;
 	overflow-y: scroll; 
-	
 	margin-bottom: 10px;  
-	
 	background-color:rgba(255,255,255,1.00);
 	
 	
@@ -49,13 +48,55 @@ background-color: #A2A2A2;
 	
 }
 
-#chat-frame {
-	width: 100vw;
-	height:80vh; 
-background-color: rgba(255,255,255,1.00);
+#content-frame {
+	display: block; 
+	width: 80vw;
+	
+    overflow-y: scroll;
+	overflow-x: hidden; 
+	background-color: rgba(255,255,255,1.00);
 
 }
 .form {
 	width:100vw;
 }
 
+input [type: button] {
+	float: right; 
+}
+
+#user{
+	float:right;
+	margin: 5px;
+	padding: 2px 5px 2px 2px;
+	
+	color: rgba(255,255,255,1.0); 
+	background-color: rgba(0,0,255,0.6);
+}
+
+#user p{
+	
+	margin-right: 10px;
+	margin-left:10px;
+}
+
+#bot{
+	float: left;
+	padding: 2px 2px 0px 5px;
+	margin:5px;
+	text-wrap:normal;	
+	background-color: rgba(206,206,206,1.0); 
+	
+	}
+	
+#bot p{
+	
+	margin-right: 10px;
+	margin-left:10px;
+	
+}
+
+.bubble {
+	
+	position:relative; 
+	

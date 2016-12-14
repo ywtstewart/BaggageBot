@@ -1,18 +1,24 @@
 // JavaScript Document
 <!-- Script tot access API  to send questions & retrieve responses -->
 
-var accessToken = "e2fa5b6f7adf4b55aeb33a228d8691ca";
+var accessToken = "00724994abce4d768d4d1f599ab76f68";
 var baseUrl = "https://api.api.ai/v1/";
 
 var sessionID = Math.random() * 1000000;
 
 var user;
 var text;
+var parentOption = "to do"; 
+
+var dummy = "example.html";
+var weatherURL = "http://www.buienradar.nl/weer/amsterdam_airport_schiphol/nl/6296680/5daagse"; 
+var newsURL = "http://nos.nl/";
+var trafficURL = "http://trafficnet.nl/#";
 
 // ideal version use JSON file with url to guide user to point of interest
-var toDO = new Array("more information", "play  a game", "keep chatting"),
+var toDO = new Array("More information", "keep chatting"),
 
-moreInfo = new Array("news", "Netherlands", "Weather");
+moreInfo = new Array("News", "Traffic", "Weather");
 
 var confirmArray = new Array("Yes, please!", "No, thank you!");
 
@@ -21,34 +27,40 @@ $(document).ready(function() {
     text = "intro";
     send(text);
     clickListener();
-    //renderButtons(toDo);
+    
 
 });
+
+function panToBottom () {
+					$("#chat").scrollTop($("#content").height());
+					
+				};
 
 function listeners(){
             $("#send").keypress(function(event) {
                 if (event.which == 13) {
                     event.preventDefault();
 
-                    var question = "User : " + $("#input").val();
+                    var question = $("#input").val();
                     user = "user";
                     //var question_ = $("<p></p>").text(temp);
                     setResponse(question, user);
-
+					$("#input").val('');
+					panToBottom(); 
                 }
             });
             $("#input").keypress(function(event) {
                 if (event.which == 13) {
                     event.preventDefault();
                     send();
-                    var question = "User : " + $("#input").val();
+                    var question = $("#input").val();
                     user = "user";
                     //var question_ = $("<p></p>").text(temp);
                     setResponse(question, user);
                     text = $("#input").val();
                     send(text);
-
-                   
+					panToBottom(); 
+                   $("#input").val('');
 
 
                 }
@@ -58,14 +70,16 @@ function listeners(){
                 if (event.which == 13) {
                     event.preventDefault();
                     send();
-                    var question = "User : " + $("#input").val();
+                    var question = $("#input").val();
                     user = "user";
                     //var question_ = $("<p></p>").text(temp);
                     setResponse(question, user);
 
                     text = $("#input").val();
                     send(text);
-
+					
+					$("#input").val(''); 
+					panToBottom(); 
                    
 
                 }
@@ -104,24 +118,32 @@ function listeners(){
                         sessionId: sessionID
                     }),
                     success: function(data) {
-						console.log(data);
-                        var response = "Anna bot : " + data.result.fulfillment.speech;
-                        user = "bot";
 						
+                        var response = data.result.fulfillment.speech;
+                        user = "bot";
+						console.log(user);
                         setResponse(response, user);
                     },
                     error: function() {
-                        setResponse("Internet connection/server error");
+                        console.log("Internet connection/server error");
                     }
                 });
                 //setResponse("");
             };
 
             function setResponse(val, user) {
-
-                $("#chat").append("<p id='" + user + "'>" + val + "</p>");
+				console.log(user);
+				switch (user){
+					
+					case "user": $("#chat").append("<span><p id='" + user + "'>" + val + "</p></span>"); break;
+					
+					
+					case "bot": $("#chat").append("<span><p id='" + user + "'>" + val + "</p></span>"); break;
+					
+					default: console.log("unknown user"); 
+				}
+				panToBottom(); 
 				
-				console.log(val);
                 responseFilter(val);
 				
 				
@@ -132,39 +154,41 @@ function listeners(){
                
 			   switch(response){
 
-                    case "Anna bot : Hi! I'm Anna belt, your personalised bot assistant! would you like for me to keep you notified on your baggage?": 
+                    case "Hi! I'm Anna belt, your personalised bot assistant! would you like for me to keep you notified on your baggage?": 
 					renderButtons(confirmArray); break;
 					
-                    case "Anna bot : Splendid! Your bag is currently being unloaded from the plane. I will keep you informed when it is on the belt.": 			                    setResponse("Anna bot : Would you like to do something in the mean time?", "bot"); break; 
-					case "Anna bot : You are welcome!": setResponse("Anna bot : Would you like to do something in the mean time?", "bot"); break; 
-					case "Anna bot : Would you like to do something in the mean time?":  					
+                    case "Splendid! Your bag is currently being unloaded from the plane. I will keep you informed when it is on the belt.": 			                    send(parentOption); break; 
+					case "You are welcome!": send(parentOption); break; 
+					case "Would you like to do something in the mean time?":  					
 					renderButtons(toDO); break;
-					case "Anna bot : What kind of information are you searching for?":	renderButtons(moreInfo); break;
-					
+					case "What kind of information are you searching for?":	renderButtons(moreInfo); break;
+					case "Here's a link to the news here.": renderFrame(dummy); break; 
+					case "Here you can see the actual traffic information.": renderFrame(dummy); break;
+					case "Here's the weather information in your area.": renderFrame(dummy); break; 
 					default: listeners();  
 					}
              
 
             };
 
-            /*	function getRecommendations(){
-                $(this).children("div:#chat").append();
-                    }
-              function getInfo(){
-                $(this).children("div:#chat").append();
-
-              }*/
+           function renderFrame(links){
+               $("#chat").append("<iframe id='content-frame' src='" + links+ "' height='400px' ></iframe>"); 
+			   
+			   send(parentOption); 
+			   
+		   }
 
             function renderButtons(list) {
-
+				$("#chat").append("<span>");
                 for (i = 0; i < list.length; i++) {
                     var value = '' + list[i];
 					$("#option-button").removeAttr(value); 
-                    $("#chat").append("<input type='button' class='option-button' value='"+ value +"'  style='width: " + list.length + "/100*with' />");
+					
+                    $("#chat").append("<input type='button' id='user' value='"+ value +"'  style='width: " + list.length + "/100*width;' />").addClass("option-button");
 
                 }
-
-
+				$("#chat").append("</span>");
+				panToBottom();
 
             };
 
@@ -175,7 +199,11 @@ function listeners(){
                     var temp = $(e.target).val();
 					
                     send(temp);
+					panToBottom();
                     console.log(temp);}
                 });
+				
+			
 
+			
             };
