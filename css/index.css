@@ -1,6 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
-
+p, h1, .option-button{
+	font-family: arial;
+}
 
 #page-header h1{
 	
@@ -13,7 +15,8 @@
 
 body { 
 background-color: #A2A2A2;
-overflow: hidden; 
+overflow: hidden;
+
 }
 #footer {
 	width: 100vw;	
@@ -92,15 +95,15 @@ overflow: hidden;
 	position:relative; 
 	max-width: 49vw;
 	background: rgba(197,197,197,1.00);
-	padding:20px 2px 5px 2px; 
+	padding:8px 2px 2px 2px; 
 	border-radius: 10px; 
 	margin-left:5px;
 }
 
 .option-button input{
  	float: right; 
-	padding: 2px 2px 0px 5px; 
-	margin: 10px 5px 10px 0px; 
+	padding: 0px 2px 0px 5px; 
+	margin: 1px 5px 1px 0px; 
 	
 }
 .option-button {background:#6968FF;}

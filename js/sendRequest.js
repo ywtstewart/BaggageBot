@@ -1,5 +1,13 @@
 // JavaScript Document
-<!-- Script tot access API  to send questions & retrieve responses -->
+//Script tot access API  to send questions & retrieve responses 
+
+
+/* Note all changes here:  			
+
+
+
+*/
+
 
 var accessToken = "00724994abce4d768d4d1f599ab76f68";
 var baseUrl = "https://api.api.ai/v1/";
@@ -28,11 +36,13 @@ $(document).ready(function() {
     send(text);
     clickListener();
     
-	$("#input").prop('disabled', true); 
-	$("#send").prop('disabled', true);
+	/*// Verwijder deze regels
+	$("#input").prop('disabled', true);  
+	$("#send").prop('disabled', true);*/
 
 });
 
+//function to pan to the wha
 function panToBottom () {
 					$("#chat").scrollTop($("#content").height());
 					
@@ -45,23 +55,28 @@ function listeners(){
 
                     var question = $("#input").val();
                     user = "user";
-                    //var question_ = $("<p></p>").text(temp);
+                   
                     setResponse(question, user);
+					panToBottom();
 					$("#input").val('');
-					panToBottom(); 
+					 
                 }
             });
             $("#input").keypress(function(event) {
                 if (event.which == 13) {
                     event.preventDefault();
                     send();
-                    var question = $("#input").val();
+                   
+				    var question = $("#input").val();
                     user = "user";
-                    //var question_ = $("<p></p>").text(temp);
-                    setResponse(question, user);
-                    text = $("#input").val();
-                    send(text);
+                    
+					setResponse(question, user);
+					
 					panToBottom(); 
+                   
+				    text = $("#input").val();
+                    send(text);
+					
                    $("#input").val('');
 
 
@@ -74,14 +89,14 @@ function listeners(){
                     send();
                     var question = $("#input").val();
                     user = "user";
-                    //var question_ = $("<p></p>").text(temp);
+                  
                     setResponse(question, user);
-
+					panToBottom(); 
                     text = $("#input").val();
                     send(text);
 					
 					$("#input").val(''); 
-					panToBottom(); 
+					
                    
 
                 }
@@ -123,7 +138,7 @@ function listeners(){
 						
                         var response = data.result.fulfillment.speech;
                         user = "bot";
-						console.log(user);
+						console.log(user + " response : "+ response);
                         setResponse(response, user);
                     },
                     error: function() {
@@ -135,15 +150,23 @@ function listeners(){
 
             function setResponse(val, user) {
 				console.log(user);
-				switch (user){
+				
+				if (val != ''){
+						switch (user){
 					
-					case "user": $("#chat").append("<span><div class='"+ user+ " bubble' ><p class='" + user + "'>" + val + "</p></div></span>"); break;
+									case "user": 
+									$("#chat").append("<span><div class='"+ user+ " bubble'><p class='" + user + "'>" + val + "</p></div></span>"); 
+									break;
+										
+									case "bot": 
+									$("#chat").append("<span><div class='"+ user+ " bubble'><p class='" + user + "'>" + val + "</p></div></span>");
+								 	break;
 					
-					
-					case "bot": $("#chat").append("<span><div class='"+ user+ " bubble' ><p class='" + user + "'>" + val + "</p></div></span>"); break;
-					
-					default: console.log("unknown user"); 
-				}
+									default: console.log("unknown user"); 
+								}
+						}
+				
+				
 				panToBottom(); 
 				
                 responseFilter(val);
@@ -156,7 +179,7 @@ function listeners(){
                
 			   switch(response){
 
-                    case "Hi! I'm Anna belt, your personalised bot assistant! would you like for me to keep you notified on your baggage?": 
+                    case "Hello I am Anna. Anna-Belt, would you like for me to keep you notified on your baggage?": 
 					renderButtons(confirmArray); break;
 					
                     case "Splendid! Your bag is currently being unloaded from the plane. I will keep you informed when it is on the belt.": 			                    send(parentOption); break; 
@@ -194,16 +217,15 @@ function listeners(){
 
             };
 
-
+			// click event listener for the dynamic buttons
             function clickListener() {
                 $(document).on("click", '.option-button', function(e) {
 					if (e){
+						
                     var temp = $(e.target).val();
-					switch (temp) {
-					case "keep chatting":
-						$("#input").prop('disabled', false); 						$("#send").prop('disabled', false); 										break;
-					}
-                    send(temp);
+					
+                    //sends value from button to the api
+					send(temp);
 					
 					panToBottom();
                     console.log(temp);}
