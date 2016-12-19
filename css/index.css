@@ -1,8 +1,36 @@
 @charset "utf-8";
 /* CSS Document */
-p, h1, .option-button{
+p, h1, h2, h3, .option-button{
 	font-family: arial;
 }
+body { 
+background-color: #B7B7B7;
+overflow: hidden;
+
+}
+.header-title h2{
+	background: #0A0093;
+	color: #FFFFFF;
+	text-align: center; 
+}
+
+#tp_One {
+	display:block;
+	position:relative; 
+   	width: 95vw;
+	heigth: 100vh;
+	background: #FFFFFF;
+	
+}
+#tp_One ::after {
+	break-after:always; 
+} 
+#scan-btn {
+	display:block;
+	align:center;
+	
+}
+
 
 #page-header h1{
 	
@@ -13,11 +41,7 @@ p, h1, .option-button{
 	color: #FFFFFFF;
 	}
 
-body { 
-background-color: #A2A2A2;
-overflow: hidden;
 
-}
 #footer {
 	width: 100vw;	
 	align: bottom; 
@@ -107,4 +131,11 @@ overflow: hidden;
 	
 }
 .option-button {background:#6968FF;}
+
+.container {
+	padding: 0px auto 0px auto; 
+	
+    text-align: center;
+	
+}
 

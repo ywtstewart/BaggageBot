@@ -3,40 +3,186 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>BaggageBot</title>
-        
-       <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-        
+        <title>MediaLAB-Schiphol</title>
         
         <link type="text/css" rel="stylesheet" href="css/index.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-       
-       
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+        
+        <script type="text/javascript" src="lib/grid.js"></script>
+			<script type="text/javascript" src="lib/version.js"></script>
+			<script type="text/javascript" src="lib/detector.js"></script>
+			<script type="text/javascript" src="lib/formatinf.js"></script>
+			<script type="text/javascript" src="lib/errorlevel.js"></script>
+			<script type="text/javascript" src="lib/bitmat.js"></script>
+			<script type="text/javascript" src="lib/datablock.js"></script>
+			<script type="text/javascript" src="lib/bmparser.js"></script>
+			<script type="text/javascript" src="lib/datamask.js"></script>
+			<script type="text/javascript" src="lib/rsdecoder.js"></script>
+			<script type="text/javascript" src="lib/gf256poly.js"></script>
+			<script type="text/javascript" src="lib/gf256.js"></script>
+			<script type="text/javascript" src="lib/decoder.js"></script>
+			<script type="text/javascript" src="lib/qrcode.js"></script>
+			<script type="text/javascript" src="lib/findpat.js"></script>
+			<script type="text/javascript" src="lib/alignpat.js"></script>
+			<script type="text/javascript" src="lib/databr.js"></script>
+   
+   <script type="text/javascript">
+	var gCtx = null;
+	var gCanvas = null;
+
+	var imageData = null;
+	var ii=0;
+	var jj=0;
+	var c=0, file;
+	
+	
+function dragenter(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+function dragover(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+function drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+
+  var dt = e.dataTransfer;
+  var files = dt.files;
+
+  fileHandler(files);
+}
+
+function fileHandler(){
+	var o=[];
+	file = $("input[type=file]").files; 
+	var canvas = document.getElementById("#qr_canvas"); 
+	var reader = new FileReader();
+     
+	 reader.addEventListener('load', function (){
+		 canvas.src = reader.result; 
+		 }, false); 
+	  
+	 if (file){
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file);}	
+	  console.log( reader.readAsDataURL(file)); 
+}  
+	
+function read(a)
+{
+	alert(a);
+}	
+	
+function load()
+{
+	initCanvas(200,200);
+	qrcode.callback = read;
+	qrcode.decode("meqrthumb.png");
+}
+
+function initCanvas(ww,hh)
+	{
+		gCanvas = document.getElementById("qr_canvas");
+		gCanvas.on("dragenter", dragenter, false);  
+		gCanvas.on("dragover", dragover, false);  
+		gCanvas.on("drop", drop, false);
+		var w = ww;
+		var h = hh;
+		gCanvas.style.width = w + "px";
+		gCanvas.style.height = h + "px";
+		gCanvas.width = w;
+		gCanvas.height = h;
+		gCtx = gCanvas.getContext("2d");
+		gCtx.clearRect(0, 0, w, h);
+		imageData = gCtx.getImageData( 0,0,320,240);
+	}
+
+	function passLine(stringPixels) { 
+		//a = (intVal >> 24) & 0xff;
+
+		var coll = stringPixels.split("-");
+	
+		for(var i=0;i<320;i++) { 
+			var intVal = parseInt(coll[i]);
+			r = (intVal >> 16) & 0xff;
+			g = (intVal >> 8) & 0xff;
+			b = (intVal ) & 0xff;
+			imageData.data[c+0]=r;
+			imageData.data[c+1]=g;
+			imageData.data[c+2]=b;
+			imageData.data[c+3]=255;
+			c+=4;
+		} 
+
+		if(c>=320*240*4) { 
+			c=0;
+      			gCtx.putImageData(imageData, 0,0);
+		} 
+ 	} 
+
+        function captureToCanvas() {
+		canvas = document.getElementById("qr_canvas");
+		qrcode.decode(canvas.src);
+		
+        }
+</script>
     </head>
     
     <div id="tp_One"> 
         
-    </div>
-    
-    <div id="wrapper" > 
-    
-    <div id="content" class="content" height=90%  >
-    	
-        <div id="chat" class="chat"> </div>
-    
-    </div> </div>
-               
-      <form class="form" > 
-       <span><input id="input" type="text" value="" /><button id="send" type="submit" >Post</button></span>
-       </form>
-          
+       <div id="container" class="container">
+       <!-- Must choose between arrival or departure, origin&flightnumber(back-up), scan ticket-->
+       
+       		<div class="header-title"> <h2> titel </h2></div>
+            <div id="type-form-container"> 
+            
             </div>
             
-  
+            
+            <div id="scan-form"> 
+            		<canvas id="qr_canvas"> </canvas>
+       				<form id="tpOne_form">
+       				
+                      <input type="file"  id="scan-btn" accept="image/*" capture onChange="fileHandler()"/>
+                		
+               			<h3>OR</h3>
+               
+   						<p> Flight number</p>
+      					<span><input type="text" id="flight-number" />
+              			<p> Origin</p>
+      					<input type="text" id="origin" /></span>
+                        
+                        <span><button id="next-div" type="button" >Submit</button></span>
+        			</form>
+            </div>
+       </div>
+      
+    </div>
     
+    <!-- Chatbot-->
+    <div id="wrapper" > 
+      			<div id="content" class="content" height=90%  >
+         			<div id="chat" class="chat"> </div>
+    			</div> 
+                <form class="form" > 
+       			<span><input id="input" type="text" value="" /><button id="send" type="submit" >Post</button></span>
+       			</form>
+    </div>
+           
+            </div>
+       
     </div>
             </div>
-            <script type="text/javascript" src="js/sendRequest.js"> </script>       
+            <script type="text/javascript" src="js/index.js"></script>
+            <script type="text/javascript" src="js/touchpointOne.js"> </script>
+            <script type="text/javascript" src="js/sendRequest.js"> </script>  
+            
+            
+               
         </body>
         
     

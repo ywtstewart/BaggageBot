@@ -9,10 +9,10 @@
 */
 
 // API http variables
-const accessToken = "00724994abce4d768d4d1f599ab76f68";
-const baseUrl = "https://api.api.ai/v1/";
+var accessToken = "00724994abce4d768d4d1f599ab76f68";
+var baseUrl = "https://api.api.ai/v1/";
 
-const sessionID = Math.random() * 1000000;
+var sessionID = Math.random() * 1000000;
 
 //global variables
 //extra variables 
@@ -35,8 +35,7 @@ var toDO = new Array("More information", "keep chatting"),
  moreInfo = new Array("News", "Traffic", "Weather"), 
  confirmArray = new Array("Yes, please!", "No, thank you!");
 
-$("#wrapper").ready(function(){
-//$("#wrapper").ready(function() {
+$("#wrapper").ready(function() {
 
     text = "intro";
     send(text);
