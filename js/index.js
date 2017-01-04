@@ -18,14 +18,16 @@ function botNameGenerator(input) {
 		botName = botArray[i][1];
 		botColor = botArray[i][2]; 
 		botIcon = botArray[i][3];
-	}else {input= prompt("This prototype only supports the baggage belts at Arrival hal 1 at the moment. Please fill in a baggage belt in Arrival 1");}
+	}else {console.log("This prototype only supports the baggage belts at Arrival hal 1 at the moment. Please fill in a baggage belt in Arrival 1");}
 	}
 	console.log(botName);
 	botIcon  = "src/"+botIcon; 
 	console.log(botIcon); 
 	$("#nav-bar").append("<br><h2>" + botName + "</h2>");
 	$("#bot-icon").attr("src", botIcon); 
-	
+	$(".bot-bubble").attr("background", botColor);
+
+}
 
  
 $("#menu-btn").on('click', function(){
@@ -41,9 +43,6 @@ $("#menu-btn").on('click', function(){
 			$("#chatbot").show();
 });
 
-$("#navigation").ready(function(e) {
-     
-});
 
 
 
