@@ -51,8 +51,9 @@ margin:0px;
 }
 .nav-bar
  {
-	display: block;
-	position:relative;
+	display: block !important;
+	position:fixed;
+	top: 0px; 
 	margin:0px;
 	width: 100vw;
 	height:10vh;
@@ -269,11 +270,13 @@ table
 }
 
 #footer
-{
+{  
 	width: 100vw;	
 	align: bottom; 
 	position:fixed;
+	
 	bottom:0;	
+	z-index:1000; 
 }
 #message-input 
 {   display:inline-flex;
@@ -318,9 +321,10 @@ table
 #chat 
 {
 	width: 100vw;
-	height:80vh; 
+	max-height:80vh; 
 	display:block;
-	position:relative;
+	position:fixed;
+	top: 10vh;
 	overflow-y: auto;
 	overflow-x: hidden; 
 	border-bottom: 2px solid #0000;
@@ -349,7 +353,11 @@ table
 
 }
 .form 
-{
+{   display: block !important;
+	 
+	position:fixed;
+	bottom:0px;
+	/*z-index: 1000; */
 	width:100vw;
 	margin-top:1px;
 	border-top:solid #B3B3B3 1px ;

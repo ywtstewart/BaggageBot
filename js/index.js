@@ -4,7 +4,8 @@ var input =prompt("Enter belt number");
 //var input = 4; 
 var botName, botColor, botIcon; 
 $(document).ready(function(){
-	$("#main-menu").hide(); 
+	$("#main-menu").hide();
+	$("#chatbot").hide(); 
 	$("#tp_One").show();
 	botNameGenerator(input); 
 });

@@ -34,7 +34,7 @@ $("#next-div" ).on('click', function(){
 	
  	$("#main-menu").hide();
 	$("#tp_One").hide();
- 
+ 	$("#chatbot").show();
 	
 	console.log(botColor);
 	//$("#nav-bar").append("<h3 style='text-align: center;'> Chatbot</h3>"); 
@@ -285,8 +285,8 @@ function listeners(){
 			function addTimeStamp(user){
 				
                 var now = new Date();
-                var month =   now.getMonth();
-				currentTimestamp = now.getDate()+"-"+ (month+=1) +"-"+now.getFullYear()+ " " +now.getHours()+ ":"+now.getMinutes(); 
+               
+				currentTimestamp = now.getHours()+ ":"+now.getMinutes(); 
 				
 				 
 				console.log(currentTimestamp);
