@@ -32,7 +32,7 @@
             
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
          <script>
-	     var lastname, firstname, origin, flightnumber, airline; 
+	     var lastname, firstname, origin, flightnumber, airline, beltnumber; 
         (function(window, $, undefined) {
             $(function() {
 
@@ -91,11 +91,12 @@
                         flightnumber = airline += info[2].substring(info[2].length-=3, info[2].length);    
                           
 						console.log("Name: " + initial + ". " + lastname);
+
                         
                         
                         } else { 
 						
-						alert("Sorry, unable to read your boarding pass at this time");
+						beltnumber = prompt("Sorry, unable to read your boarding pass at this time. Please fill in your belt number");
 						
 						 }
 						
@@ -285,7 +286,7 @@ var html="<br>";
                 <div id="nav-bar" class="nav-bar"  >  
                 	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="30px" height="30px"/> </a> 
                 	
-                   	<a class="bot-icon-link" ><img id="bot-icon" class="bot-icon" src="src/test-bot-icon.jpg" width="45px" height="45px" /></a>
+                   	<a class="bot-icon-link" ><img id="bot-icon" class="bot-icon" width="45px" height="45px" /></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
