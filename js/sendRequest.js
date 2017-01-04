@@ -274,7 +274,7 @@ function listeners(){
 				$(chat).append("<svg id='typing-dots' class='typing-dots' width=50% height='30'><circle  cx='10px' cy='20px'r='10px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='10px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='10px' style='fill:#A2A2A2;'/></svg>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
               
-				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botColor+ ";'><p class='" + user + "'>" + val + "</p></div></span>";
+				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botColor+ "; color:" +botColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
                 
 				setTimeout(function botResponse(){
                  

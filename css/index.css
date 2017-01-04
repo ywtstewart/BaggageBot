@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
+
 p, a, h1, h2, h3, .option-button
 {
 	font-family: roboto;
@@ -15,6 +16,7 @@ html body
 	height: 100%;
 	overflow-y:hidden;
 	-webkit-overflow-scrolling: touch;
+	
   }
 body 
 {
@@ -414,6 +416,9 @@ table
 .bot-bubble {
 	
 }
+.bot-bubble p{
+	color: #000;
+}
 .user-bubble{
 	
 	background: #A2A2A2;
@@ -427,7 +432,7 @@ table
 	 border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   
-  border-top: 10px solid #F000FF;
+  border-top: 10px solid ;
 	
 	display: block;
 	width:0;
