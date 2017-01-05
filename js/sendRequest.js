@@ -291,7 +291,7 @@ function listeners(){
 				 
 				console.log(currentTimestamp);
 				
-				$(chat).append("<div class='"+ user + "-timestamp timestamp'><p>" + currentTimestamp + "</p></div></span>"+breaks);
+				$(chat).append("<div class='"+ user + "-timestamp timestamp'><p>" + currentTimestamp + "</p></div></span>");
 			}
 			
 		   

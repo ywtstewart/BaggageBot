@@ -31,6 +31,8 @@
 			<script type="text/javascript" src="lib/zxing-pdf417.js"></script>
             
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+           
+            
          <script>
 	     var lastname, firstname, origin, flightnumber, airline, beltnumber; 
         (function(window, $, undefined) {
@@ -253,7 +255,7 @@ var html="<br>";
     </head>
     
  
-    
+    <!-- welcome page --> 
     <div id="tp_One" height=100%> 
        <div id="container" class="container">
        
@@ -287,37 +289,16 @@ var html="<br>";
     
                         <a href=#family class="main-menu-btn"><div width=100%><h3>Family</h3></div></a>
    
-    	<!--
-<div id="menu-btns" class="menu-btns">
-   					 <table id="menu-ls" class="new-menu" > 
-   
-    					<tr>
-   							<td><a href="#item1" class="main-menu-btn" ><div><img src="src/game_icon.png" width="100" height="100"> <p>Game</p></div></a></td>
-    
-   							<td><a href=#chatbot id="main-menu-btn-chat"class="main-menu-btn">
-                            <div>
-                           		 <img src="src/chat_icon.png" width="100" height="100"> <p>Chat</p>
-                                 </div>
-                                 </a></td>
-    
-    					</tr>
-                        <tr>
-    <td><a href="#item3" class="main-menu-btn"><div><img src="src/map_icon.png" width="100" height="100"> <p>Map</p></div></a></td>
-    
-    <td><a href="#item4" class="main-menu-btn"><div><img src="src/family_icon.png" width="100" height="100"><p>Family</p></div></a></td>
-    </tr>
-    </table>
-    </div>-->
     </div>
     
     <!-- Chatbot-->
-    <div id="chatbot" height="100%" > 
+    <div id="chatbot" class="screen" height="100%" > 
                 
       			<div id="content" class="content"   >
                 <div id="nav-bar" class="nav-bar"  >  
                 	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
                 	
-                   	<a class="bot-icon-link" ><img id="bot-icon" class="bot-icon" width="45px" height="45px" /></a>
+                   	<a class="bot-icon-link" href=#family ><img id="bot-icon" class="bot-icon" width="45px" height="45px" /></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
@@ -335,14 +316,26 @@ var html="<br>";
        
     </div>
             </div>
+
 <!-- bot Family -->
-<div id="family"> 
+<div id="family" class="screen" height=100%> 
+ 	<div id="family-nav-bar" class="nav-bar"> 
+          <a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
+                	
+          <a class="bot-icon-link"  href=#family ><img id="bot-icon" class="bot-icon" width="45px" height="45px" /></a>
+    </div>
+    
+    
+    <div id="family-content"> </div>
+    <div id="family-footer"> </div> 
+    
 
 </div>
 
              
-    		<script type="application/javascript" src="js/index.js"></script>
+    		<script type="text/javascript" src="js/index.js"></script>
             <script type="text/javascript" src="js/sendRequest.js"> </script>  
+            <!--<script type="text/javascript" src="js/family.js"></script>--> 
          
              
             

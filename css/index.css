@@ -375,9 +375,10 @@ table
 
 .user p
 { 
-	margin: 0 0 10px 10px;
+	
 	
 	text-wrap:normal; 
+	margin:10px;
 	}
 
 .bot

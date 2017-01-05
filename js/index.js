@@ -1,13 +1,19 @@
 // JavaScript Document
-var botArray = [[4,"Anna", "#ffeb11","test-bot-icon.jpg"], [2,"Chris", "#65f442","test-bot-icon.jpg"], [6,"Henk", "#11ffe7","test-bot-icon.jpg"], [7,"Oddy", "#F000FF","test-bot-icon.jpg"]];
+var botArray = [[4,"Anna", "#ffeb11","test-bot-icon-anna.jpg"], [2,"Chris", "#65f442","test-bot-icon-chris.jpg"], [6,"Henk", "#11ffe7","test-bot-icon-henk.jpg"], [7,"Oddy", "#F000FF","test-bot-icon-oddy.jpg"]];
 var input =prompt("Enter belt number");
-//var input = 4; 
+
 var botName, botColor, botIcon; 
+
+var chatbotContainer = "#chatbot", mainMenuContainer  = "#main-menu", familyContainer ="#family", welcomeContainer = "#tp_One";
+//var hammer = new Hammer(); 
+
 $(document).ready(function(){
-	$("#main-menu").hide();
-	$("#chatbot").hide(); 
-	$("#tp_One").show();
+	$(mainMenuContainer).hide();
+	$(chatbotContainer).hide(); 
+	$(familyContainer).hide(); 
+	$(welcomeContainer).show();
 	botNameGenerator(input); 
+	
 });
 
 function botNameGenerator(input) {
@@ -22,7 +28,7 @@ function botNameGenerator(input) {
 	}else {console.log("This prototype only supports the baggage belts at Arrival hal 1 at the moment. Please fill in a baggage belt in Arrival 1");}
 	}
 	console.log(botName);
-	botIcon  = "src/"+botIcon; 
+	botIcon  = "src/bot-icon-resources/"+botIcon; 
 	console.log(botIcon); 
 	$("#nav-bar").append("<br><h2>" + botName + "</h2>");
 	$("#bot-icon").attr("src", botIcon); 
@@ -32,17 +38,19 @@ function botNameGenerator(input) {
 
  
 $("#menu-btn").on('click', function(){
-			   $("#main-menu").show();
-			   $("#chatbot").hide();
-			   $("#tp_One").hide();
+			   $(mainMenuContainer).show();
+			   $(chatbotContainer).hide(); 
+			   $(welcomeContainer).hide();
 		   });
 		   
 		   $("#main-menu-btn-chat").on('click', function(){
-     		$("#main-menu").hide();
-	 		$("#tp_One").hide();
+     		$(mainMenuContainer).hide();
+	 		$(welcomeContainer).hide();
 	        
-			$("#chatbot").show();
-});
+			$(chatbotContainer).show(); 
+			});
+			
+		
 
 
 
