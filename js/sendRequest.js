@@ -30,14 +30,14 @@ var dummy = "example.html";
 var toDO = new Array("More information", "keep chatting");
 
 
+
 $("#next-div" ).on('click', function(){
 	
  	$("#main-menu").hide();
 	$("#tp_One").hide();
  	$("#chatbot").show();
 	
-	console.log(botColor);
-	//$("#nav-bar").append("<h3 style='text-align: center;'> Chatbot</h3>"); 
+	
     text = "intro";
     send(text);
     
@@ -49,7 +49,7 @@ $("#next-div" ).on('click', function(){
 
 //function to pan to the wha
 function panToBottom () {
-					$(chat).scrollTop($("#content").height());
+					$(chat).scrollTop($("#chat").height());
 	};
 
 function listeners(){
@@ -158,12 +158,14 @@ function listeners(){
 							    
 								$(chat).append("<span><div class='"+ user+ " bubble "+ user+ "-bubble'><p class='" + user + "'>" + val + "</p></div></span>"); 
 								addTimeStamp(user); 
+								panToBottom(); 
 								break;
 										
 							case "bot": 
-									 
+							    
+									val = val.replace("botName", botName); val = val.replace("botName", botName);
 								writingDots(val, user);
-								
+								panToBottom(); 
 																
 								break;
 					
@@ -172,7 +174,7 @@ function listeners(){
 						}
 				
 				
-				panToBottom(); 
+				
 				
                
 			 };
@@ -274,7 +276,7 @@ function listeners(){
 				$(chat).append("<svg id='typing-dots' class='typing-dots' width=50% height='30'><circle  cx='10px' cy='20px'r='10px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='10px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='10px' style='fill:#A2A2A2;'/></svg>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
               
-				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botColor+ "; color:" +botColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
+				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
                 
 				setTimeout(function botResponse(){
                  
@@ -289,7 +291,7 @@ function listeners(){
 				currentTimestamp = now.getHours()+ ":"+now.getMinutes(); 
 				
 				 
-				console.log(currentTimestamp);
+				
 				
 				$(chat).append("<div class='"+ user + "-timestamp timestamp'><p>" + currentTimestamp + "</p></div></span>");
 			}
