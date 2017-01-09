@@ -7,9 +7,7 @@
         <title>MediaLAB-Schiphol</title>
         
         <link type="text/css" rel="stylesheet" href="css/index.css">
-		
-        
-        
+	
        		<script type="text/javascript" src="lib/grid.js"></script>
 			<script type="text/javascript" src="lib/version.js"></script>
 			<script type="text/javascript" src="lib/detector.js"></script>
@@ -33,9 +31,7 @@
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
            
             <script src="ticketScanner.js"> </script> <script src="qrScanner.js"> </script>
-            
        
-  
     </head>
     
     <!--first screen-->
@@ -44,15 +40,13 @@
         <h1>Hello, can we help you..</h1>
         <p> To get in touch with your baggage</p>
         <!-- Y/N buttons if Y to welcome chat page--> 
-        <div class="options-btn-container"><input type="button" class="options-btn" value="yes" /> 
-        <input type="button"  class="options-btn" value="no" /> </div>
+        <div class="options-btn-container"><input type="button" class="options-btn" value="yes"/>
+        <input type="button" class="options-btn" value="no" /></div>
              </div>
  
-    <!-- welcome chat page --> 
+    <!-- scanner --> 
     <div id="tp_One" height=100%> 
-       <div id="container" class="container">
-       
-       
+       <div id="scan-container" class="scan-container">
        
             <div id="type-form-container"> </div>
            
@@ -60,10 +54,15 @@
             		<canvas id="qr_canvas"> </canvas>
        				<form id="tpOne_form">
        				  <br>
+                      <!--<div id="scan-btn" onClick="" >
+                      Upload ticket <img src="src/scanner-btn/upload-icon.png" width="50px" height="50px" /> 
+                	  Scan ticket <img src="src/scanner-btn/scan-icon.png" width="50px" height="50px" /> 
+                      -->
                       <input type="file"  id="scan-btn" accept="image/*" value="Scan or Upload" capture />
+                      <!--</div> -->
                 		<div id="result"> </div><br>
                			
-                        <span><button id="next-div" type="button" >Submit</button></span> 
+                        <!--<span><button id="next-div" type="button" >Confirm</button></span> --> 
                         <img id="scanned-img" src=""/>
         			</form><br>
                     
@@ -72,16 +71,27 @@
        </div>
       
     </div>
+    
+    <!--pop-up-->
+    <div id="pop-up" class="pop-up" width=100% height=100%>
+       <div id="basic-info" class="basic-info"></div>
+       <div id="flight-info" class="flight-info"></div>
+       <span><button id='next-div' type='button' >Confirm</button></span> 
+    </div>
      <!-- 4 option menu --> 
     <div id="main-menu" class="main-menu">
-    		          <a href="#item1" class="main-menu-btn" ><div><h3>Game</h3></div></a>
+       
+    <div> <a id="menu-main-btn-hidden" class="menu-btn"  ><img src="src/app-c.png" width="20px" height="20px"/> </a> </div>
+    		       <div class="main-menu-btns ">
+                     
     
    					    <a href=#chatbot id="main-menu-btn-chat"class="main-menu-btn"><div width=100%><h3>Chat</h3></div></a>    
-    					
+    					<a href=#family class="main-menu-btn"><div width=100%><h3>The Family</h3></div></a>
                         <a href="#item3" class="main-menu-btn"><div width=100%><h3>Map</h3></div></a>
-    
-                        <a href=#family class="main-menu-btn"><div width=100%><h3>Family</h3></div></a>
+    					<a href="#item4" class="main-menu-btn"><div width=100%><h3>About</h3></div></a>
+                        
    						<a href=#tp_One id="main-menu-btn-chat-tp_One" class="main-menu-btn"><div width=100%><h3>tp one</h3></div></a>
+                        </div>
     </div>
     
     <!-- Chatbot-->
@@ -89,14 +99,14 @@
                 
       			<div id="content" class="content"   >
                 <div id="nav-bar" class="nav-bar"  >  
-                	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
+                	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/app-c.png" width="20px" height="20px"/> </a> 
                 	
-                   	<a class="bot-icon-link" href=#family ><img id="bot-icon" class="bot-icon" width="48px" height="48px" /></a>
+                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="48px" height="48px" /></div></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
     			</div> 
-                <div class="form" ><form  > 
+                <div id="post-form" class="form" ><form  > 
        			<span><textarea id="message-input" type="text" placeholder="Type a message.."></textarea>
                
                 <img id="post-btn" src="src/post_btn.png" width="30vh" height="30vh">
@@ -113,9 +123,9 @@
 <!-- bot Family -->
 <div id="family" class="screen" height=100%> 
  	<div id="family-nav-bar" class="nav-bar"> 
-          <a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
+          <a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/app-c.png" width="20px" height="20px"/> </a> 
                 	
-          <a class="bot-icon-link"  href=#family ><img id="bot-icon" class="bot-icon" width="45px" height="45px" /></a>
+          <a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="48px" height="48px" /></div></a>
     </div>
     
     
@@ -128,6 +138,7 @@
 <!-- hidden frame-->
              
     		<script type="text/javascript" src="js/index.js"></script>
+            <script type="text/javascript" src="js/popup.js"> </script> 
             <script type="text/javascript" src="js/sendRequest.js"> </script>  
             <!--<script type="text/javascript" src="js/family.js"></script>--> 
             <script type="text/javascript" src="js/welcome.js"></script>

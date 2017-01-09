@@ -2,7 +2,7 @@
 //Script for scanning psysical pdf417 boarding passes only to receive first name, lastname and flightnumber
 
 //global variables
- var lastname, firstname, origin, flightnumber, airline, beltnumber; 
+ var lastname, firstname, fullname, origin, flightnumber, airline, beltnumber; 
  
         (function(window, $, undefined) {
             $(function() {
@@ -47,11 +47,13 @@
 							}
 							}
 					   
-					    fullname = info[0].substring(2, info[0].length);
+					    fullnameA = info[0].substring(2, info[0].length);
 						
-				        fullname = fullname.split("/");
+				        fullnameA = fullnameA.split("/");
 						
-						lastname = fullname[0]; initial = fullname[1]; 
+						lastname = fullnameA[0]; initial = fullnameA[1]; 
+						
+						fullname = initial + ". " + lastname; 
 						
 				        airline = info[1].substring(info[1].length-=2, info[1].length); 
                             
@@ -61,7 +63,7 @@
                             
                         flightnumber = airline += info[2].substring(info[2].length-=3, info[2].length);    
                           
-						console.log("Name: " + initial + ". " + lastname);
+						console.log("Name: " +fullname);
 
                         
                         

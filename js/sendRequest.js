@@ -1,21 +1,13 @@
 //Script to access API  to send questions & retrieve responses 
-/* Note all changes here:  			
-
-
-
+/* 
+accesstoken, sessionID's,beltnumber, bot properties are defined in index.js
+This Script handles the family member bot chat.
 */
 
-// API http variables
-const accessToken = "00724994abce4d768d4d1f599ab76f68";
-const baseUrl = "https://api.api.ai/v1/";
 
-const sessionID = Math.random() * 1000000;
-
-//global variables
-//extra variables 
+//new global variables 
 var user,text, 
 parentOption = "to do",startTimestamp, endTimeStamp;
-var pauseTimer = true;
 
 //div ids
 var postBtn = "#post-btn", 
@@ -29,12 +21,75 @@ var dummy = "example.html";
 //sample array to generate buttons
 var toDO = new Array("More information", "keep chatting");
 
+var now = new Date(), hours, minutes, daytime, daytimeGreeting; 
+
+$(document).on('click', '.options-btn', function(e) {
+					if (e){
+							e.preventDefault();
+                    		var temp = $(e.target).val();
+							console.log(temp);
+					if (temp= "yes"){
+						
+				     		$(mainMenuContainer).hide();
+	 						$(welcomeContainer).hide();
+	        
+							$(chatbotContainer).show(); 
+							setTimeStamp(startTimestamp);
+							text = "intro welcome"; 
+							send(text); 
+							//hide post form
+							setTimeout( send("personalised info"), 3000);
+							
+							
+					}else { 
+												
+					 }
+					}
+					
+					
+                });
+function setTimeStamp(t) {
+					
+					minutes = now.getMinutes(); 
+					hours = now.getHours();
+					if (minutes <10){ minutes = "0"+ minutes;}
+					
+					if (hours >12) { daytime = "PM";} else{ daytime = "AM";}
+						hours = hours %12 ||12;
+					date = now.getDate() +"-"+ now.getMonth() +"-"+ now.getFullYear();
+					t = date + " "+ hours + ":" + minutes + daytime;
+					
+					setDaytimeGreeting(hours,daytime);
+	
+				}
+				
+function setDaytimeGreeting (hours, daytime){
+					
+					if ( daytime=="AM" && hours < 6 || hours ==12 ){
+											daytimeGreeting = "Goodevening";
+									}
+					else if (daytime =="PM" && hours >=6  && hours != 12){
+											daytimeGreeting = "Goodevening";
+									} 
+					else if ( daytime== "AM" && hours>=6 && hours !=12 ){
+											daytimeGreeting = "Goodmorning";
+									}
+					else if (daytime == "PM" && hours<=5  ){
+							   				daytimeGreeting = "Goodafternoon";
+									} 
+					else if (daytime == "PM" && hours == 12){
+											daytimeGreeting = "Goodafternoon";
+									}
+	}
 
 
 $("#next-div" ).on('click', function(){
 	
+	$(PUContainer).hide();
+	//show post form
  	$("#main-menu").hide();
 	$("#tp_One").hide();
+	
  	$("#chatbot").show();
 	
 	
@@ -163,7 +218,12 @@ function listeners(){
 										
 							case "bot": 
 							    
-									val = val.replace("botName", botName); val = val.replace("botName", botName);
+								val = val.replace("botName", botName); val = val.replace("botName", botName);
+								
+								
+								
+								val = val.replace("daytimegreeting ", daytimeGreeting); 
+								
 								writingDots(val, user);
 								panToBottom(); 
 																
@@ -273,7 +333,7 @@ function listeners(){
 
             function writingDots(val, user){
 				
-				$(chat).append("<svg id='typing-dots' class='typing-dots' width=50% height='30'><circle  cx='10px' cy='20px'r='10px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='10px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='10px' style='fill:#A2A2A2;'/></svg>"); 				
+				$(chat).append("<svg id='typing-dots' class='typing-dots typing-bubble' width=50% height='30'><circle  cx='10px' cy='20px'r='10px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='10px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='10px' style='fill:#A2A2A2;'/></svg>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
               
 				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
@@ -287,11 +347,15 @@ function listeners(){
 			function addTimeStamp(user){
 				
                 var now = new Date();
-               
-				currentTimestamp = now.getHours()+ ":"+now.getMinutes(); 
+				minutes = now.getMinutes(); hours = now.getHours(); 
+               if (minutes <10){ minutes = "0"+ minutes;}
+					
+					if (hours >12) { daytime = "PM";} else{ daytime = "AM";}
+						hours = hours %12 ||12;
+						
+			    setDaytimeGreeting(hours,daytime);
 				
-				 
-				
+				currentTimestamp = hours+ ":"+minutes+daytime; 
 				
 				$(chat).append("<div class='"+ user + "-timestamp timestamp'><p>" + currentTimestamp + "</p></div></span>");
 			}
