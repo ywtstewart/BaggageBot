@@ -2,7 +2,7 @@
 /* main script for the whole app parent global variables & handles navigation elements */
 
 //Parent global variables
-var botArray = [[0,"Welcome", "#F9C728","test-bot-icon.jpg", "#F9C728"], [4,"Anna", "#F7E114","anna-bot-icon.png", "#fbee84"], [2,"Chris", "#F49F16","chris-bot-icon.png", "#f9cd85"], [6,"Henk", "#F28B9E","henk-bot-icon.png", "#f8c2cc"], [7,"Oddy", "#9121E8","oddy-bot-icon.png", "#c68bf3"]];
+var botArray = [[0,"Welcome", "#FFFFFF","test-bot-icon.jpg", "#F9C728"], [4,"Anna", "#F7E114","anna-bot-icon.png", "#fbee84"], [2,"Chris", "#F49F16","chris-bot-icon.png", "#f9cd85"], [6,"Henk", "#F28B9E","henk-bot-icon.png", "#f8c2cc"], [7,"Oddy", "#9121E8","oddy-bot-icon.png", "#c68bf3"]];
 var input =0;
 
 //api variables
@@ -53,7 +53,7 @@ function botNameGenerator(input) {
 	
 	
 	
-	$("#bot-icon").attr("src", botIcon); $("#bot-icon-link").attr("background", botColor); 
+	$("#bot-icon").attr("src", botIcon); $(".bot-icon-link").css("background", botColor); 
 	$(".bot-bubble").attr("background", botBColor);
 	if(instance ==0){
 	
