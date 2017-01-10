@@ -2,7 +2,7 @@
 /* CSS Document */
 
 p, a, h1, h2, h3, .option-button, .options-btn, textarea {
-	font-family: roboto;
+	font-family: roboto,verdana, arial;
 }
 html body {
 	left: 0;
@@ -50,7 +50,7 @@ body {
 }
 h2 {
 	display: block;
-	margin: 0px;
+	margin: 15px;
 	padding-top: 0px;
 	text-align: center;
 }
@@ -163,6 +163,7 @@ table {
 }
 .typing-dots {
 	padding-left: 10px;
+	
 }
 .typing-dots circle {
 	background: #A2A2A2;
@@ -176,13 +177,21 @@ table {
 }
 
 #tp_One {
-	heigth: 20vh;
-	display: block;
 	
-	position:relative;
+	height: 10vh;
+	display: block;
+	background:none;
+	position:absolute;
+	z-index:60;
+	bottom:20;
 	
 
 	
+}
+#tpOne_form{
+	margin-top: 0;
+	background:#FFFFFF;
+	border-top:solid #B3B3B3 1px;
 }
 #scan-container {
 	
@@ -191,14 +200,13 @@ table {
 }
 #scan-form {
 	display: block;
-	align: center;
+	
 	height: 20vh;
 	width: inherit;
 	margin-top:80vh;
-	margin-right:20vw;
-	margin-left:20vw;
+	
 	background: #FFFFFF;
-}
+} 
 #qr_canvas {
 	display: none;
 }
@@ -265,10 +273,10 @@ table {
 	background-color: #FFFFFFF;
 }
 .form {
-	display: block !important;
+	display: block ;
 	position: fixed;
 	bottom: 0px;
-	/*z-index: 1000; */
+	z-index: 55;
 	width: 100vw;
 	margin-top: 1px;
 	border-top: solid #B3B3B3 1px;
@@ -276,7 +284,7 @@ table {
 .user {
 	float: right;
 	margin: 5px 5px 5px 10px;
- =
+
 }
 .user p {
 	text-wrap: normal;
@@ -413,5 +421,70 @@ table {
 	
 	z-index: 60;
 	margin: 0px;
+	
 }
+
+label img {
+    border-left:solid 1px #515151;
+	float:right;
+	
+}
+label{
+	display:block;
+	width:40vw;
+	
+	border: 1px solid #515151;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+	
+	
+	margin: 10px 30vw 10px 30vw;
+
+}
+
+label div{
+	display:block;
+	top:0;
+	align-self:center;
+	
+	padding: 5px;
+}
+label text{
+	vertical-align:middle;
+}
+
+.popup-container {
+	
+	position:absolute;
+	
+	height: 70vh;
+	width: 80vw; 
+	top:10px;
+    border: solid 1px #515151;
+    margin-left: 10vw;
+	margin-right:10vw;
+	background:#FFFFFF;
+	
+	
+}
+.basic-info, .flight-info {
+	font-weight:bold;
+	font-size:18px; 
+	margin-bottom: 10px;
+}
+.pop-up button{
+	
+	display: block;
+	position:absolute;
+	bottom:10px;
+	width:40vw;
+	margin: 0px 30vw 0px 30vw; 
+	
+}
+.info{
+	margin:30vh 10px 0px 10px;
+}
+
 

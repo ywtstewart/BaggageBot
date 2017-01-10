@@ -13,6 +13,11 @@ var gCtx = null;
 									files = e.dataTransfer.files;
 									console.log(files.length); }
 								});
+								$("#upload-btn").on('change',function (e){
+									if(e){
+									files = e.dataTransfer.files;
+									console.log(files.length); }
+								});
 	
 								function dragenter(e) {
   											e.stopPropagation();

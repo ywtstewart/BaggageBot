@@ -34,11 +34,12 @@ $(document).on('click', '.options-btn', function(e) {
 	 						$(welcomeContainer).hide();
 	        
 							$(chatbotContainer).show(); 
+							
 							setTimeStamp(startTimestamp);
 							text = "intro welcome"; 
 							send(text); 
 							//hide post form
-							setTimeout( send("personalised info"), 3000);
+							
 							
 							
 					}else { 
@@ -54,7 +55,11 @@ function setTimeStamp(t) {
 					hours = now.getHours();
 					if (minutes <10){ minutes = "0"+ minutes;}
 					
-					if (hours >12) { daytime = "PM";} else{ daytime = "AM";}
+					if (hours >12) { 
+					daytime = "PM";
+					} 
+					else{ 
+					daytime = "AM";}
 						hours = hours %12 ||12;
 					date = now.getDate() +"-"+ now.getMonth() +"-"+ now.getFullYear();
 					t = date + " "+ hours + ":" + minutes + daytime;
@@ -192,7 +197,7 @@ function listeners(){
                     success: function(data) {
 						
                         var response = data.result.fulfillment.speech;
-                        user = "bot";
+                       user = "bot";
 						//console.log(user + " response : "+ response);
                         setResponse(response, user);
                     },
@@ -204,7 +209,7 @@ function listeners(){
             };
 
             function setResponse(val, user) {
-				console.log(val);
+				
 				
 				if (val != ''){
 						switch (user){
@@ -217,13 +222,13 @@ function listeners(){
 								break;
 										
 							case "bot": 
-							    
+							    responseFilter(val);
 								val = val.replace("botName", botName); val = val.replace("botName", botName);
 								
 								
 								
 								val = val.replace("daytimegreeting ", daytimeGreeting); 
-								
+																							
 								writingDots(val, user);
 								panToBottom(); 
 																
@@ -239,24 +244,56 @@ function listeners(){
                
 			 };
 			
-		
+		/*setTimeout( function sendPersonal(){
+								send("personalised info"); 
+								$(tpContainer).show();
+								
+								 }, 3000); */
 
          function responseFilter(response) {
                
+			  
 			   switch(response){
-
-                    case "Hello I am Anna. Anna-Belt. I will keep you updated about your baggage progress.": 
-					renderButtons(confirmArray); hideInput();break;
 					
-                    case "I see that your bag is currently being unloaded from the plane. It will take some time to arrive. I will send you a reminder if it is about to arrive.": send(parentOption);  break; 
-					case "You are welcome!": send(parentOption);  break; 
+                    case "To get personalised information, please upload your plane ticket.": 
+									setTimeout( function sendPersonal(){
+								
+												showTP();
+								
+								 			}, 3000); 
+									break;
+					
+                    case "I see that your bag is currently being unloaded from the plane. It will take some time to arrive. I will send you a reminder if it is about to arrive.": 
+									send(parentOption);  
+									break; 
+									
+					case "daytimegreeting , Welcome to the Belt family. On of our family members will help you get in touch with your baggage.": 
+									send("personalised info");  
+									break; 
+									
 					case "Would you like to do something in the mean time?":  					
-					renderButtons(toDO); hideInput();break;
-					case "What kind of information are you searching for?":	 renderButtons(moreInfo); hideInput();break;
-					case "Here's a link to the news here.": renderFrame(dummy); break; 
-					case "Here you can see the actual traffic information.": renderFrame(dummy); break;
-					case "Here's the weather information in your area.": renderFrame(dummy); break; 
-					default: listeners();    
+									renderButtons(toDO); 
+									hideInput();
+									break;
+									
+					case "What kind of information are you searching for?":	 
+									renderButtons(moreInfo); 
+									hideInput();
+									break;
+									
+					case "Here's a link to the news here.": 
+									renderFrame(dummy); 
+									break;
+									 
+					case "Here you can see the actual traffic information.": 
+									renderFrame(dummy);
+									break;
+									
+					case "Here's the weather information in your area.": 
+									renderFrame(dummy); 
+									break; 
+									
+					default: 		listeners();    
 					}
              
 
@@ -291,7 +328,7 @@ function listeners(){
 					if (e){
 						e.preventDefault();
                     var temp = $(e.target).val();
-					console.log(temp); 
+					
 					if (temp != "keep chatting"){
 						send(temp);
 					
@@ -302,7 +339,7 @@ function listeners(){
 						showInput();
 					 }
 					 panToBottom();
-                    console.log(temp);}
+                   }
 					
 					
                 });
@@ -333,7 +370,7 @@ function listeners(){
 
             function writingDots(val, user){
 				
-				$(chat).append("<svg id='typing-dots' class='typing-dots typing-bubble' width=50% height='30'><circle  cx='10px' cy='20px'r='10px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='10px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='10px' style='fill:#A2A2A2;'/></svg>"); 				
+				$(chat).append("<svg id='typing-dots' class='typing-dots ' width=50% height='30'><circle  cx='10px' cy='20px'r='5px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='5px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='5px' style='fill:#A2A2A2;'/></svg>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
               
 				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
