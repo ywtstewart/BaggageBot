@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1, user-scalable=no, width=device-width">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <title>MediaLAB-Schiphol</title>
+        <title>Fline</title>
         
         <link type="text/css" rel="stylesheet" href="css/index.css">
 	
@@ -40,8 +40,11 @@
         <h1>Hello, can we help you..</h1>
         <p> To get in touch with your baggage</p>
         <!-- Y/N buttons if Y to welcome chat page--> 
-        <div class="options-btn-container"><input type="button" class="options-btn" value="yes"/>
-        <input type="button" class="options-btn" value="no" /></div>
+        <div class="options-btn-container">
+        <label class="options-btn" for="options-btn-y">Yes</label>
+                      <label class="options-btn" for="options-btn-n">No</label>
+        <input id="options-btn-y" type="button"  style="display:none"/>
+        <input id="options-btn-n"type="button" style="display:none" /></div>
              </div>
  
     <!-- scanner --> 
@@ -53,13 +56,13 @@
        				<form id="tpOne_form">
        				  <br>
                       
-                      <label for="scan-btn"><div>
+                      <label class="scanner-label" for="scan-btn"><div>
                       Upload ticket
                       <img src="src/scanner-btn/upload-icon.png" width="20px" height="20px" /> 
                       </div>
                       </label>
                       
-                      <label for="upload-btn">
+                      <label class="scanner-label" for="upload-btn">
                       <div>
                 	  Scan ticket 
                       <img src="src/scanner-btn/scan-icon.png" width="20px" height="20px" />
@@ -81,6 +84,10 @@
       
     </div>
     
+     <div id="chat-btns" style="display:none"> 
+           
+    </div>
+    
     <!--pop-up-->
     <div id="pop-up" class="pop-up" width=100% height=100%>
        <div id="popup-container" class="popup-container"> 
@@ -95,7 +102,7 @@
      <!-- 4 option menu --> 
     <div id="main-menu" class="main-menu">
        
-    <div> <a id="menu-main-btn-hidden" class="menu-btn"  ><img src="src/app-c.png" width="20px" height="20px"/> </a> </div>
+    <div> <a id="menu-main-btn-hidden" class="menu-btn"  ><img src="src/menu.png" width="20px" height="20px"/> </a> </div>
     		       <div class="main-menu-btns ">
                      
     
@@ -113,9 +120,9 @@
                 
       			<div id="content" class="content"   >
                 <div id="nav-bar" class="nav-bar"  >  
-                	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/app-c.png" width="20px" height="20px"/> </a> 
+                	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
                 	
-                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="48px" height="48px" /></div></a>
+                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="35px" height="50px" /></div></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
@@ -123,7 +130,7 @@
                 <div id="post-form" class="form" ><form  > 
        			<span><textarea id="message-input" type="text" placeholder="Type a message.."></textarea>
                
-                <img id="post-btn" src="src/post_btn.png" width="30vh" height="30vh">
+                <!--<img id="post-btn" src="src/post_btn.png" width="30vh" height="30vh">-->
                 
                 </span>
        			</form>
@@ -144,7 +151,7 @@
  	<div id="family-nav-bar" class="nav-bar"> 
           <a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/app-c.png" width="20px" height="20px"/> </a> 
                 	
-          <a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="48px" height="48px" /></div></a>
+          <a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="35px" height="50px" /></div></a>
     </div>
     
     

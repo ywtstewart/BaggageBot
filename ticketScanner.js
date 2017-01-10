@@ -2,7 +2,7 @@
 //Script for scanning psysical pdf417 boarding passes only to receive first name, lastname and flightnumber
 
 //global variables
- var lastname, firstname, fullname, origin, flightnumber, airline, beltnumber, img; 
+ var lastname, firstname, fullname, origin, flightnumber, airline,  flNumber,img; 
  
         (function(window, $, undefined) {
             $(function() {

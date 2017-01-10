@@ -44,7 +44,7 @@ body {
 	top: 0px;
 	margin: 0px;
 	width: 100vw;
-	height: 10vh;
+	height: 8vh;
 	background: #FFFFF;
 	box-shadow: #929292;
 }
@@ -73,13 +73,13 @@ h2 {
 }
 .main-menu-btns {
 	
-	
-	padding-top:15vh;
+	padding:15vh 0px 0px 40vw;
 	margin: 10vh 0px 10vh 0px;
+    
 }
 .main-menu-btns a {
 	
-	text-align: center;
+	text-align: left;
 	text-decoration: none;
 	color: #000;
 	margin: 20px 0px 20px 0px;
@@ -90,7 +90,7 @@ h2 {
 }
 
 .main-menu-btns a div :hover {
-	background: #D3D3D3;
+	/*Arrow goes here */
 }
 .main-menu-btns a :hover {
 	color: #A2A2A2;
@@ -220,7 +220,7 @@ table {
 #message-input {
 	display: inline-flex;
 	margin: 1px 0px 1px 0px;
-	min-width: 80vw;
+	width: 95vw;
 	min-height: 5vh;
 	border: none;
 	overflow-x: hidden;
@@ -228,8 +228,10 @@ table {
 	word-wrap: break-word;
 	word-break: break-all;
 	resize: none;
-	font-size:16px; 	
-}
+	font-size:16px;
+	outline:none;
+	padding: 1px 10px 1px 10px; 
+	}
 
 .page-header {
 	width: 100vw;
@@ -282,8 +284,8 @@ table {
 	border-top: solid #B3B3B3 1px;
 }
 .user {
-	float: right;
-	margin: 5px 5px 5px 10px;
+	
+	margin: 5px 49vw 5px 10px;
 
 }
 .user p {
@@ -302,8 +304,8 @@ table {
 .bubble {
 	position: relative;
 	max-width: 49vw;
-	padding: 8px 2px 2px 2px;
-	border-radius: 10px;
+	padding: 2px 2px 2px 2px;
+	border-radius: 5px;
 	margin: 5px;
 	margin-left: 20px;
 	margin-right: 20px;
@@ -313,6 +315,7 @@ table {
 }
 .user-bubble {
 	background: #EAE9F2;
+	left:40vw; 
 }
 .bot-bubble:after {
 	top: 0px;
@@ -339,6 +342,8 @@ table {
 	display: block;
 	width: 0;
 	height: 0;
+	
+	
 }
 .option-button input {
 	float: right;
@@ -353,15 +358,18 @@ table {
 }
 .bot-icon {
 	float: right;
-	padding: 5px;
+	
+	padding: 5px 5px 10px 0px;
 	
 	border-radius: 50%;
 }
 .bot-timestamp {
-	margin-left: 40vw;
+	margin-left: 49vw;
+	margin-bottom: 10px;
 }
 .user-timestamp {
 	margin-left: 78vw;
+	margin-bottom: 10px;
 }
 .timestamp :before {
 	white-space: pre-line;
@@ -390,13 +398,26 @@ table {
 	border-top-left-radius:2px;
 	border-top-right-radius: 2px;
 	
-	
+}
+
+.options-btn :hover{
+	background: #F9C728;
+	border-color:#F9C728;
+}
+.options-btn{
+	width: 15vw;
+	height: 5vh; 
+	 
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px; 
+	border-top-left-radius:2px;
+	border-top-right-radius: 2px;
+	border: solid #000000 1px;
+	text-align:center;
+	display:inline-block;
 	
 }
 
-.options-btns :hover{
-	background: #F9C728;
-}
 #welcome-img {
 	margin: 10vh 10vw 0px 10vw;
 	align-self: center;
@@ -407,7 +428,7 @@ table {
 .options-btn-container {
 	width: 40vw;
 	height: 5vh;
-	margin: 5vh 20vw 1vh 20vw;
+	margin: 5vh 30vw 1vh 30vw;
 	
 }
 .pop-up {
@@ -417,19 +438,19 @@ table {
 	width: 100vw;
 	height: 100vh;
 	
-	background-color: rgba(255,255,255,0.90);
+	background-color: #FFFFFF;
 	
 	z-index: 60;
 	margin: 0px;
 	
 }
 
-label img {
+.scanner-label img {
     border-left:solid 1px #515151;
 	float:right;
 	
 }
-label{
+.scanner-label{
 	display:block;
 	width:40vw;
 	

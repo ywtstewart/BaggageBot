@@ -115,7 +115,7 @@ function panToBottom () {
 function listeners(){
 			 $(chat).off('click'); 
 	  		
-            $(postBtn).keypress(function(event) {
+          /*  $(postBtn).keypress(function(event) {
                 if (event.which == 13) {
                     event.preventDefault();
 
@@ -128,7 +128,7 @@ function listeners(){
 					$(inputField).val('');
 					 
                 }
-            });
+            });*/
 			
 			 $("#chatbot").on('click', "#post-btn", function(e) {
 					 
@@ -257,10 +257,10 @@ function listeners(){
 					
                     case "To get personalised information, please upload your plane ticket.": 
 									setTimeout( function sendPersonal(){
-								
+								       
 												showTP();
 								
-								 			}, 3000); 
+								 			}, 2000); 
 									break;
 					
                     case "I see that your bag is currently being unloaded from the plane. It will take some time to arrive. I will send you a reminder if it is about to arrive.": 
@@ -268,7 +268,10 @@ function listeners(){
 									break; 
 									
 					case "daytimegreeting , Welcome to the Belt family. On of our family members will help you get in touch with your baggage.": 
-									send("personalised info");  
+									setTimeout( function sendPersonal(){
+								        send("personalised info");  
+								
+								 			}, 2000); 
 									break; 
 									
 					case "Would you like to do something in the mean time?":  					
@@ -370,14 +373,15 @@ function listeners(){
 
             function writingDots(val, user){
 				
-				$(chat).append("<svg id='typing-dots' class='typing-dots ' width=50% height='30'><circle  cx='10px' cy='20px'r='5px' style='fill:#A2A2A2;'/><circle  cx='40px'cy='20px' r='5px' style='fill:#A2A2A2;' /> <circle  cx='70px' cy='20px'r='5px' style='fill:#A2A2A2;'/></svg>"); 				
+				$(chat).append("<svg id='typing-dots' class='typing-dots bubble' width=50% height='30'><circle  cx='10px' cy='20px'r='5px' style='fill:#A2A2A2;'/><circle  cx='25px'cy='20px' r='5px' style='fill:#A2A2A2;' /> <circle  cx='40px' cy='20px'r='5px' style='fill:#A2A2A2;'/></svg>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
               
-				var html = breaks+"<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
+				var html = "<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
                 
 				setTimeout(function botResponse(){
-                 
-				$(chat).append(html);addTimeStamp(user);},2010);		
+                $(chat).append(html);
+				addTimeStamp(user);
+				},2010);		
 				
 			};
 			
