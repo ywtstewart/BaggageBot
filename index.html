@@ -38,11 +38,11 @@
     <div id="welcome" class="welcome" height=100%>
         <img id="welcome-img" src="src/family-image.png" width=80% height=70% />
         <h1>Hello, can we help you..</h1>
-        <p> To get in touch with your baggage</p>
+        <p class="welcome-p"> To get in touch with your baggage</p>
         <!-- Y/N buttons if Y to welcome chat page--> 
         <div class="options-btn-container">
-        <label class="options-btn" for="options-btn-y"><div>Yes</div></label>
-                      <label class="options-btn" for="options-btn-n"><div>No</div></label>
+        <label class="options-btn" for="options-btn-y"><div ><p>Yes</p></div></label>
+        <label class="options-btn" for="options-btn-n"><div><p>No<p></div></label>
         <input id="options-btn-y" type="button"  style="display:none"/>
         <input id="options-btn-n"type="button" style="display:none" /></div>
              </div>
@@ -54,18 +54,18 @@
             <div id="scan-form" onLoad="load()"> 
             		<canvas id="qr_canvas"> </canvas>
        				<form id="tpOne_form">
-       				  <br>
+       				  
                       
-                      <label class="scanner-label" for="scan-btn"><div>
-                      Upload ticket
-                      <img src="src/scanner-btn/upload-icon.png" width="20px" height="20px" /> 
+                      <label class="scanner-label" for="scan-btn"><div >
+                      <p>Upload ticket</p>
+                      <img src="src/scanner-btn/upload-icon.png"  /> 
                       </div>
                       </label>
                       
                       <label class="scanner-label" for="upload-btn">
                       <div>
-                	  Scan ticket 
-                      <img src="src/scanner-btn/scan-icon.png" width="20px" height="20px" />
+                	  <p>Scan ticket</p>
+                      <img src="src/scanner-btn/scan-icon.png" />
                       </div>
                       </label>
                       
@@ -83,10 +83,11 @@
        
       
     </div>
-    
+    <!--chat-btns--> 
      <div id="chat-btns"  class="chat-btns" style="display:none"> 
            
     </div>
+    
     
     <!--pop-up-->
     <div id="pop-up" class="pop-up" width=100% height=100%>
@@ -97,7 +98,10 @@
        <div id="ticket-img" class="ticket-img"></div>
        </div>
        </div>
-       <button id='next-div' type='button' >Confirm</button>
+       <div class="popup-btn-container">
+       
+       <label class="confirm-btn" for="next-div"><div><p> Confirm</p></div></label>
+       <input id="next-div" type="button" style="display:none" /></div>
     </div>
      <!-- 4 option menu --> 
     <div id="main-menu" class="main-menu">
@@ -122,7 +126,7 @@
                 <div id="nav-bar" class="nav-bar"  >  
                 	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
                 	
-                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="35px" height="35px" /></div></a>
+                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon"  /></div></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
@@ -155,18 +159,19 @@
     </div>
     
     
-    <div id="family-content"> </div>
+    <div id="family-content"><ol id="family-content-list" class="family-content-list"> </ol>
+     </div>
     <div id="family-footer"> </div> 
     
 
 </div>
 
-<!-- hidden frame-->
+
              
     		<script type="text/javascript" src="js/index.js"></script>
             <script type="text/javascript" src="js/popup.js"> </script> 
             <script type="text/javascript" src="js/sendRequest.js"> </script>  
-            <!--<script type="text/javascript" src="js/family.js"></script>--> 
+          	<script type="text/javascript" src="js/family.js"></script>
             <script type="text/javascript" src="js/welcome.js"></script>
          
              

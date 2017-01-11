@@ -1,9 +1,28 @@
 // JavaScript Document
 // Javascript file to handle all family div interactions and content
-var container = "#family";
+var page = "#family", content = "#family-content", footer = "#family-footer", contentList = ".family-content-list";
 var twitterToken = "";
 
-$(document).ready(function () {
+$(page).on('focus' , function () {
+	      
+	  for (i= 0; i < botArray.length; i++) {
+		  if(i!=0){
+			  $(contentList).append("<li> <h1>"+ botArray[i][1]+ "</h1> <img src='src/bot-icon-resources/"+botArray[i][3]+ "'/></li>");
+		  }
+		  
+	  }
+	
+});
+
+
+
+
+
+
+
+
+
+/*$(document).ready(function () {
 	
    
 	$.ajax({
@@ -29,4 +48,4 @@ $(document).ready(function () {
 	});
 	
 	
-});
+});*/

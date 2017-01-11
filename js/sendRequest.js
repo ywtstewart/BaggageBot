@@ -12,7 +12,8 @@ parentOption = "to do",startTimestamp, endTimeStamp;
 //div ids
 var postBtn = "#post-btn", 
 chat = "#chat", 
-inputField="#message-input"; 
+inputField="#message-input", chatBTNS = '#chat-btns'; 
+
 var breaks = "<br>";
 
 //same frame content urls
@@ -115,7 +116,7 @@ function panToBottom () {
 function listeners(){
 			 $(chat).off('click'); 
 	  		
-          /*  $(postBtn).keypress(function(event) {
+           $(postBtn).keypress(function(event) {
                 if (event.which == 13) {
                     event.preventDefault();
 
@@ -128,7 +129,7 @@ function listeners(){
 					$(inputField).val('');
 					 
                 }
-            });*/
+            });
 			
 			 $("#chatbot").on('click', "#post-btn", function(e) {
 					 
@@ -263,8 +264,12 @@ function listeners(){
 								 			}, 2000); 
 									break;
 					
-                    case "I see that your bag is currently being unloaded from the plane. It will take some time to arrive. I will send you a reminder if it is about to arrive.": 
-									send(parentOption);  
+                    case "Hello I am botName.  botName-Belt. I will keep you updated about your baggage ": 
+									/* setTimeout( function sendPersonal(){
+								       
+												showTP();
+								
+								 			}, 2000);  */ 
 									break; 
 									
 					case "daytimegreeting , Welcome to the Belt family. On of our family members will help you get in touch with your baggage.": 
@@ -308,19 +313,23 @@ function listeners(){
 			   send(parentOption); 
 			   
 		   }
-
+			
             function renderButtons(list) {
-				hideInput();
-				 
+				//hideInput();
+				if (list.length>1){
                 for (i = 0; i < list.length; i++) {
                     var value = '' + list[i];
 					$("#option-button").removeAttr(value); 
 					
-                    $(chat).append("<input type='button' id='user' value='"+ value +"'/><br>").addClass("option-button");
+                    $(chatBTNS).append("<input type='button' id='user' value='"+ value +"'/><br>").addClass("option-button");
 					
 
-                }
-				$(chat).append("<br><br>");
+                }} else { 
+					$("#option-button").removeAttr(list); 
+					
+                    $(chatBTNS).append("<label class='chat-btnss' for='chat-btn'><div>" +value+"</div></label><input type='button' id='chat-button' 'style='display:none'/>");
+				}
+				
 				panToBottom();
 				
             };
@@ -373,8 +382,12 @@ function listeners(){
 
             function writingDots(val, user){
 				
-				$(chat).append("<svg id='typing-dots' class='typing-dots bubble' width=50% height='30'><circle  cx='10px' cy='20px'r='5px' style='fill:#A2A2A2;'/><circle  cx='25px'cy='20px' r='5px' style='fill:#A2A2A2;' /> <circle  cx='40px' cy='20px'r='5px' style='fill:#A2A2A2;'/></svg>"); 				
+				$(chat).append("<div id='typing-bubble' class='typing-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '> <svg id='typing-dots' class='typing-dots' style height='30'><circle  cx='10px' cy='20px'r='5px' style='fill:#000000;'/><circle  cx='25px'cy='20px' r='5px' style='fill:#000000;' /> <circle  cx='40px' cy='20px'r='5px' style='fill:#000000;'/></svg></div>"); 				
                 $(".typing-dots").delay(1000).hide(1000); 
+				$(".typing-bubble").delay(1000).hide(1000); 
+				
+		
+				
               
 				var html = "<span><div class='"+ user+ " bubble "+ user+ "-bubble' style='background:" +botBColor+ "; color:" +botBColor+ "; '><p class='" + user + "'>" + val + "</p></div></span>";
                 

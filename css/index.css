@@ -3,6 +3,7 @@
 
 p, a, h1, h2, h3, .option-button, .options-btn, textarea {
 	font-family: roboto,verdana, arial;
+	color: #00000000;
 }
 html body {
 	left: 0;
@@ -45,8 +46,8 @@ body {
 	margin: 0px;
 	width: 100vw;
 	height: 8vh;
-	background: #FFFFF;
-	box-shadow: #929292;
+	z-index: 2;
+	
 }
 h2 {
 	display: block;
@@ -73,8 +74,8 @@ h2 {
 }
 .main-menu-btns {
 	
-	padding:15vh 0px 0px 40vw;
-	margin: 10vh 0px 10vh 0px;
+	
+	margin: 25vh 0px 10vh 40vw;
     width:30vw;
 	
 }
@@ -83,19 +84,27 @@ h2 {
 	text-align: left;
 	text-decoration: none;
 	color: #000;
-	margin: 20px 0px 20px 0px;
+	margin: 20px 20px 20px 0px;
 	background:#FFFFFF;
 }
 .main-menubtns a div {
 	height: 10vh;
 }
 
-.main-menu-btns a div :hover {
+.main-menu-btns a :hover::before, .main-menu-btns a :active::before{
 	/*Arrow goes here */
+	width: 0px;
+	height: 0px;
+	content: ">";
+	color: #000000;
+	font-size:18px;
+	left: 30vw;
+    position: absolute;
+    display: block;
+    
+	
 }
-.main-menu-btns a :hover {
-	color: #A2A2A2;
-}
+
 .chatbot {
 	display: block;
 	width: 100vw;
@@ -194,6 +203,11 @@ table {
 	background:#FFFFFF;
 	border-top:solid #B3B3B3 1px;
 }
+.chat-btns-container{
+	margin-top: 0;
+	background:#FFFFFF;
+	border-top:solid #B3B3B3 1px;
+}
 #scan-container {
 	
 	background: none;
@@ -221,8 +235,8 @@ table {
 #message-input {
 	display: inline-flex;
 	margin: 1px 0px 1px 0px;
-	width: 95vw;
-	min-height: 5vh;
+	width: 90vw;
+	max-height: 5vh;
 	border: none;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -231,8 +245,10 @@ table {
 	resize: none;
 	font-size:16px;
 	outline:none;
-	padding: 1px 10px 1px 10px; 
+	padding: 15px; 
 	}
+
+
 
 .page-header {
 	width: 100vw;
@@ -242,9 +258,12 @@ table {
 }
 .menu-btn {
 	float: left;
-	padding: 10px;
+	
 	height: 30px;
-	margin: 10px;
+	margin: 20px;
+}
+.menu-btn img, .bot-icon {
+	vertical-align:middle;
 }
 #post-btn {
 	float: right;
@@ -254,7 +273,7 @@ table {
 }
 #chat {
 	width: 100vw;
-	max-height: 80vh;
+	max-height: 78vh;
 	display: block;
 	position: fixed;
 	top: 10vh;
@@ -262,6 +281,8 @@ table {
 	overflow-x: hidden;
 	border-bottom: 2px solid #0000;
 	border-top: solid 1px #B3B3B3;
+	margin-top:10px; 
+	z-index: 1;
 }
 #conversation p {
 	bottom: 0;
@@ -285,26 +306,62 @@ table {
 	border-top: solid #B3B3B3 1px;
 }
 .user {
-	
-	margin: 5px 49vw 5px 10px;
+	padding: 2px 2px 0px 5px;
+	margin: 5px;
 
 }
-.user p {
-	text-wrap: normal;
-	margin: 10px;
-}
+.bubble .user p { 
+	-webkit-margin-before: 0em;
+	-webkit-margin-after:0em;
+	padding:1em;
+	text-align: left;
+	display:inline-block; 	
+	word-wrap:normal;
+	}
+	
+.bubble .bot p { 
+	-webkit-margin-before: 0em;
+	-webkit-margin-after:0em;
+	padding:1em;
+	text-align: left;
+	display:inline-block;	
+	word-wrap:normal;
+	
+	}
+
 .bot {
-	transition: ease-in 500;
+	
 	padding: 2px 2px 0px 5px;
 	margin: 5px;
 }
 .bot p {
-	margin: 10px;
-	text-wrap: normal;
+	
+	
+	
+	
 }
 .bubble {
 	position: relative;
-	max-width: 49vw;
+	max-width: 60vw;
+	height:auto;
+	padding: 2px 2px 2px 2px;
+	border-radius: 5px;
+	margin: 5px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-top: 10px;
+	word-wrap: break-word;
+	word-break:normal;
+	white-space:normal;
+	clear:both;
+}
+.bot-bubble p {
+	color:#000000;
+
+}
+.typing-bubble {
+	position: relative;
+	width: 15vw; 
 	padding: 2px 2px 2px 2px;
 	border-radius: 5px;
 	margin: 5px;
@@ -312,12 +369,10 @@ table {
 	margin-right: 30px;
 	margin-top: 10px;
 }
-.bot-bubble p {
-	color: #000;
-}
+
 .user-bubble {
 	background: #EAE9F2;
-	left:40vw; 
+	float: right; 
 }
 .bot-bubble:after {
 	top: 0px;
@@ -347,6 +402,20 @@ table {
 	
 	
 }
+.typing-bubble:after {
+	top: 0px;
+	left: -7px;
+	content: " ";
+	position: absolute;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid;
+	display: block;
+	width: 0;
+	height: 0;
+	
+	
+}
 .option-button input {
 	float: right;
 	margin-right: 5px;
@@ -359,8 +428,19 @@ table {
 	text-align: center;
 }
 .bot-icon {
+	margin:0px;
+	padding: 0px 4px 0px 4px;
+	width:43px; 
+	height:52px;
+}
+.bot-icon-link{
+	display:block;
+	float: right;
+	width:50px !important; 
+	height:50px !important;
+	margin: 7px 10px 0px 0px;
 	
-	
+	border-radius: 50%;
 }
 .bot-timestamp {
 	margin-left: 49vw;
@@ -399,30 +479,39 @@ table {
 	
 }
 
-.options-btn div :hover{
+.options-btn :hover, .options-btn :active,.scanner-label :hover, .scanner-label :active,.confirm-btn :hover,.confirm-btn :active{
 	background: #F9C728;
-	border-color:#F9C728;
+	border:hidden;
 }
+
 .options-btn{
 	width: 15vw;
-	height: 5vh; 
-	 
+	height: inherit; 
+	display:inline-block;
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px; 
 	border-top-left-radius:2px;
 	border-top-right-radius: 2px;
-	border: solid #000000 1px;
-	text-align:center;
-	display:inline-block;
+	border:solid 1px;	
+	text-align:center;		
+	padding:0px;
+	margin-right: 15px;
+	}
+.options-btn div p{
+	padding:0px;
+	margin:7px;
 	
 }
-
 #welcome-img {
 	margin: 10vh 10vw 0px 10vw;
 	align-self: center;
 }
-.welcome p, h1 {
+.welcome h1{
 	margin: 0px 20vw 3vh 20vw;
+}
+.welcome-p{
+	margin: 0px 20vw 3vh 20vw;
+	    
 }
 .options-btn-container {
 	width: 40vw;
@@ -443,50 +532,68 @@ table {
 	margin: 0px;
 	
 }
-
+.scanner-label div p {
+	
+	display:inline-block;
+	margin:5px;
+	padding-left: 10px;
+	
+}
+.scanner-label div {
+	display:inline-block;
+	width: inherit;
+}
 .scanner-label img {
-    border-left:solid 1px #515151;
+	width: 3vh;
+	height: 3vh;
+ 
 	float:right;
+	margin: 5px;
+	display:inline-block;
+	
+}
+.scanner-label div img:before{
+	
+	
+	content: " ";
+	position: absolute;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid transparent;
+	
+	border-top: 25px solid #0000000;
+	
+	display: block;
+	width: 0;
+	height: 0;
 	
 }
 .scanner-label{
 	display:block;
-	width:40vw;
-	
+	width:50vw;
+	height: 5vh;
 	border: 1px solid #515151;
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
 	border-top-left-radius:3px;
 	border-top-right-radius:3px;
-	
-	
 	margin: 10px 30vw 10px 30vw;
 
-}
-
-label div{
-	display:block;
-	top:0;
-	align-self:center;
-	
-	padding: 5px;
-}
-label text{
-	vertical-align:middle;
 }
 
 .popup-container {
 	
 	position:absolute;
-	
-	height: 70vh;
-	width: 80vw; 
+	height: 80vh;
+	width: 96vw; 
 	top:10px;
     border: solid 1px #515151;
-    margin-left: 10vw;
-	margin-right:10vw;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+    margin-left: 2vw;
+	margin-right:2vw;
 	background:#FFFFFF;
-	
 	
 }
 .basic-info, .flight-info {
@@ -494,27 +601,46 @@ label text{
 	font-size:18px; 
 	margin-bottom: 10px;
 }
-.pop-up button{
+.popup-btn-container{
+	width: 100vw;
+	display:block;
+}
+.confirm-btn{
+	display: block;
+	position:absolute;
+	bottom:5vh;
+	width:30vw;
+	height: 10vh; 
+	margin: 0px 35vw 0px 35vw; 
+	background: #ffffff;
+	border: solid 1px #000000;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	text-align:center;
+	font-size: 24px;
+}
+.confirm-btn div{
 	
 	display: block;
 	position:absolute;
-	bottom:10vh;
-	width:40vw;
-	height: 10vh; 
-	margin: 0px 30vw 0px 30vw; 
-	background: #ffffff;
-	border: solid 1px #000000;
+	width:inherit;
+	margin:0px; padding:0px;
+}
+.confirm-btn div p{
 	
+	margin: 3vh;
 }
 .info{
-	margin:30vh 10px 0px 10px;
+	margin:30vh 6vw 0px 6vw;
 }
-.bot-icon-link{
-	
-	float: right;
-	
-	margin: 3px 10px 0px 0px;
-	
-	border-radius: 50%;
+.ticket-img {
+	width: 85vw; height: 35vh;
+	margin-right: 0px; 
+}
+.ticket-img img{
+	width: inherit; height: inherit;
+
 }
 
