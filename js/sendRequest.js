@@ -4,7 +4,6 @@ accesstoken, sessionID's,beltnumber, bot properties are defined in index.js
 This Script handles the family member bot chat.
 */
 
-
 //new global variables 
 var user,text, 
 parentOption = "to do",startTimestamp, endTimeStamp;
@@ -14,13 +13,9 @@ var postBtn = "#post-btn",
 chat = "#chat", 
 inputField="#message-input", chatBTNS = '#chat-btns'; 
 
-var breaks = "<br>";
-
-//same frame content urls
-var dummy = "example.html";
-
 //sample array to generate buttons
-var toDO = new Array("More information", "keep chatting");
+var toDO = new Array("More information", "keep chatting"), bagStatus = new Array ("Where is my bag now?") ;
+
 
 var now = new Date(), hours, minutes, daytime, daytimeGreeting; 
 
@@ -40,16 +35,16 @@ $(document).on('click', '.options-btn', function(e) {
 							text = "intro welcome"; 
 							send(text); 
 							//hide post form
-							
-							
-							
-					}else { 
-												
-					 }
+						
+					}
 					}
 					
 					
                 });
+function setSendQuery (val, user){
+	 setResponse(val, user);
+	 send(val);
+	}
 function setTimeStamp(t) {
 					
 					minutes = now.getMinutes(); 
@@ -122,10 +117,10 @@ function listeners(){
 
                     var question = $(inputField).val();
                     user = "user";
-                    
-                    setResponse(question, user);
+                    setSendQuery(question, user);
+                   
 					panToBottom();
-					send(question);
+					
 					$(inputField).val('');
 					 
                 }
@@ -137,11 +132,11 @@ function listeners(){
                                
                     var question = $(inputField).val();
                     user = "user";
-                  
-                    setResponse(question, user);
+                  setSendQuery(question, user);
+                    
 					panToBottom(); 
                     console.log("postbtn");
-                    send(question);
+                    
 					
 					$(inputField).val(''); 
 				
@@ -157,13 +152,13 @@ function listeners(){
                    
 				    var question = $(inputField).val();
                     user = "user";
-                    
-					setResponse(question, user);
+                    setSendQuery(question, user);
+					
 					
 					panToBottom(); 
                    
 				   
-                    send(question);
+                    
 					
                    $(inputField).val('');
 
@@ -245,15 +240,12 @@ function listeners(){
                
 			 };
 			
-		/*setTimeout( function sendPersonal(){
-								send("personalised info"); 
-								$(tpContainer).show();
-								
-								 }, 3000); */
-
+		 function setSendUserInput(val, user){
+			 
+		 }
          function responseFilter(response) {
                
-			  
+		 
 			   switch(response){
 					
                     case "To get personalised information, please upload your plane ticket.": 
@@ -264,7 +256,10 @@ function listeners(){
 								 			}, 2000); 
 									break;
 					
-                    case "Hello I am botName.  botName-Belt. I will keep you updated about your baggage ": 
+                    case "Hello I am botName. botName-Belt. I will keep you updated about your baggage progress.": 
+					                
+									renderButton("Where is my bag now?"); 
+									
 									/* setTimeout( function sendPersonal(){
 								       
 												showTP();
@@ -273,18 +268,17 @@ function listeners(){
 									break; 
 									
 					case "daytimegreeting , Welcome to the Belt family. On of our family members will help you get in touch with your baggage.": 
-									setTimeout( function sendPersonal(){
-								        send("personalised info");  
-								
-								 			}, 2000); 
+									 
+											sendAutoMessage("personalised info");
 									break; 
 									
-					case "Would you like to do something in the mean time?":  					
-									renderButtons(toDO); 
-									hideInput();
-									break;
+					case "Your baggage is being unloaded from the plane. This means it can take a while before it gets here.":  					
+									sendAutoMessage("notify when on belt");
 									
-					case "What kind of information are you searching for?":	 
+										break;
+									
+					case "What kind of information are you searching for?":	
+					                c 
 									renderButtons(moreInfo); 
 									hideInput();
 									break;
@@ -303,6 +297,8 @@ function listeners(){
 									
 					default: 		listeners();    
 					}
+					
+					
              
 
             };
@@ -315,24 +311,33 @@ function listeners(){
 		   }
 			
             function renderButtons(list) {
-				//hideInput();
+				console.log(list);
 				if (list.length>1){
                 for (i = 0; i < list.length; i++) {
                     var value = '' + list[i];
-					$("#option-button").removeAttr(value); 
 					
-                    $(chatBTNS).append("<input type='button' id='user' value='"+ value +"'/><br>").addClass("option-button");
+					$(chatBTNS).show();
+                    $(chatBTNS).append("<label class='chat-btnss' for='chat-btn'><div>" +value+"</div></label><input type='button' id='chat-button' 'style='display:none'/>");
+					
 					
 
-                }} else { 
-					$("#option-button").removeAttr(list); 
-					
-                    $(chatBTNS).append("<label class='chat-btnss' for='chat-btn'><div>" +value+"</div></label><input type='button' id='chat-button' 'style='display:none'/>");
-				}
+                }}
 				
 				panToBottom();
 				
             };
+			function renderButton(str){
+			
+					setTimeout( function(){
+					$(tpContainer).empty();  
+					user = 'bot';
+					              
+					$(tpContainer).append("<div class='chat-btnss-container'><label class='chat-btnss' for='chat-btn'><div>" +str+"</div></label><input type='button' id='chat-btn' 'style='display:none;' /><div>");
+					showTP();}, 2000);
+					
+						
+					
+			}
 
 			// click event listener for the dynamic buttons
             function clickListener() {
@@ -356,9 +361,23 @@ function listeners(){
 					
                 });
 				
+$(document).on('click', '.chat-btnss', function(e) {
+					if (e){
+						e.preventDefault();
+                    var temp = $(e.target).text();
+					 
+					 setSendQuery(temp, 'user');
+					
+					 $(tpContainer).hide();	
+					}
+					 panToBottom();
+                 
+                });
+				
 		
 			
             };
+			
 			
 			
 			 $(document).on('click', '#option-button', function(e) {
@@ -368,10 +387,16 @@ function listeners(){
 						
                     
                 });
+				function chatButtonClicked(val) {
+					
+					setSendQuery(val, 'user'); 
+					 panToBottom();
+               
+                }
 				
 				function hideInput(){
-				$("#message-input").prop('hidden', true);  
-				$("#post-btn").prop('hidden', true);
+				  
+				$("#post-form form").css('display', 'none');
 	
 				};
 			function showInput() {
@@ -414,5 +439,13 @@ function listeners(){
 				$(chat).append("<div class='"+ user + "-timestamp timestamp'><p>" + currentTimestamp + "</p></div></span>");
 			}
 			
+			function sendAutoMessage(val){
+				setTimeout( function sendPersonal(){
+								        send(val);  
+								
+								 			}, 2000);
+									
+				
+				}
 		   
 		   			

@@ -5,6 +5,7 @@
 var botArray = [[0,"Welcome", "#FFFFFF","test-bot-icon.jpg", "#F9C728"], [4,"Anna", "#F7E114","anna-bot-icon.png", "#fbee84"], [2,"Chris", "#F49F16","chris-bot-icon.png", "#f9cd85"], [6,"Henk", "#F28B9E","henk-bot-icon.png", "#f8c2cc"], [7,"Oddy", "#9121E8","oddy-bot-icon.png", "#c68bf3"]];
 var input =0;
 
+
 //api variables
 const accessToken = "00724994abce4d768d4d1f599ab76f68";
 const baseUrl = "https://api.api.ai/v1/";
@@ -38,6 +39,7 @@ function botNameGenerator(input) {
 	if(input !=0 ){ 
 	   $("#bot-icon").css('display', 'block');
 	}
+	
 	for ( i = 0; i<botArray.length; i++){
 	
 	if (input == botArray[i][0]){
@@ -45,8 +47,8 @@ function botNameGenerator(input) {
 		botColor = botArray[i][2];
 		botBColor = botArray[i][4]; 
 		botIcon = botArray[i][3];
-	}else {
-		console.log("This prototype only supports the baggage belts at Arrival hal 1 at the moment. Please fill in a baggage belt in Arrival 1");}
+		
+	}
 	}
 	
 	botIcon  = "src/bot-icon-resources/"+botIcon; 
@@ -65,26 +67,30 @@ function botNameGenerator(input) {
 }
 
  
-		$("#menu-btn").on('click', function(){
-			   $(mainMenuContainer).show();			  
-			   $(welcomeContainer).hide();
+		$(".menu-btn").on('click', function(){
+			   showMenu();
 		   });
 		   
 		$("#main-menu-btn-chat").on('click', function(){
-     		$(mainMenuContainer).hide();
-	 		$(welcomeContainer).hide();
-	        
-			$(chatbotContainer).show(); 
+			    
+     	 		showChat();
 			});
-			
-		$("#main-menu-btn-chat-tp_One").on('click', function(){
-     		showTP();
+			$("#main-menu-btn-family").on('click', function(){
+				
+				hideMenu();
+     	 		
+				$(familyContainer).show();
+				$(chatbotContainer).hide();
 			});
-			
-			
-			
+			$("#bot-icon").on('click', function(){
+				
+     	 		showFamily();
+				$(familyContainer).show();
+				$(chatbotContainer).hide();
+			});
+		
 			$("#menu-main-btn-hidden").on('click', function(){
-				$(mainMenuContainer).hide();
+				hideMenu();
 			});
 			
 	 
@@ -98,8 +104,7 @@ function botNameGenerator(input) {
 				     		$(mainMenuContainer).hide();
 	 						$(welcomeContainer).hide();
 	        				$("#bot-icon").hide();
-							$(chatbotContainer).show(); 
-						
+							$(chatbotContainer).show(); 				
 						
 					}else { 
 												
@@ -133,15 +138,31 @@ $("#post-form").hide();
 function showPost(){
 $("#post-form").show();	
 }
-
+function hideMenu(){ 
+			$(mainMenuContainer).hide();
+}
 function showTP() {
 
-				$('#main-menu').hide();
+			$('#main-menu').hide();
 	 		$(welcomeContainer).hide(); 
-	        
-			
-			$(chatbotContainer).show(); 
-			
+	        $(chatbotContainer).show(); 
 			$(tpContainer).show();	
 			}
+			
+function showChat(){
+			$(mainMenuContainer).hide();
+	 		$(welcomeContainer).hide();
+	        $(familyContainer).hide();
+			$(chatbotContainer).show();
+}
+function showFamily(){
+			console.log("show family");
+		    
+			$(familyContainer).show();
+			
+}
+function showMenu(){
+			$(mainMenuContainer).show();			  
+			$(welcomeContainer).hide();
+}
 
