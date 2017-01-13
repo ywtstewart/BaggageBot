@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1, user-scalable=no, width=device-width">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+        
         <title>Fline</title>
         
         <link type="text/css" rel="stylesheet" href="css/index.css">
@@ -48,7 +48,7 @@
              </div>
  
     <!-- scanner --> 
-    <div id="tp_One" > 
+    <div id="tp_One" class="chat-btns"> 
        
        
             <div id="scan-form" onLoad="load()"> 
@@ -83,10 +83,7 @@
        
       
     </div>
-    <!--chat-btns--> 
-     <div id="chat-btns"  class="chat-btns" style="display:none"> 
-           
-    </div>
+    
     
     
     <!--pop-up-->
@@ -110,23 +107,23 @@
     		       <div class="main-menu-btns ">
                      
     
-   					    <a href=#chatbot id="main-menu-btn-chat"class="main-menu-btn"><div width=100%><h3>Chat</h3></div></a>    
-    					<a href=#family class="main-menu-btn"><div width=100%><h3>The Family</h3></div></a>
-                        <a href="#item3" class="main-menu-btn"><div width=100%><h3>Map</h3></div></a>
-    					<a href="#item4" class="main-menu-btn"><div width=100%><h3>About</h3></div></a>
+   					    <a id="main-menu-btn-chat" class="main-menu-btn"><div width=100%><h3>Chat</h3></div></a>    
+    					<a id="main-menu-btn-family" class="main-menu-btn"><div width=100%><h3>The Family</h3></div></a>
+                        <a id="main-menu-btn-map" class="main-menu-btn"><div width=100%><h3>Map</h3></div></a>
+    					<a id="main-menu-btn-about" class="main-menu-btn"><div width=100%><h3>About</h3></div></a>
                         
    						
                         </div>
     </div>
     
     <!-- Chatbot-->
-    <div id="chatbot" class="screen" height="100%" > 
+    <div id="chatbot" class="chatbot" height=100% > 
                 
       			<div id="content" class="content"   >
                 <div id="nav-bar" class="nav-bar"  >  
-                	<a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/menu.png" width="20px" height="20px"/> </a> 
+                	<a id="menu-btn" class="menu-btn" ><img src="src/menu.png" width="20px" height="20px"/> </a> 
                 	
-                   	<a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon"  /></div></a>
+                   	<a id="main-menu-btn-family" ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon"  /></div></a>
                  	
                 </div>
          			<div id="chat" class="chat"> </div>
@@ -151,17 +148,30 @@
             </div>
 
 <!-- bot Family -->
-<div id="family" class="screen" height=100%> 
- 	<div id="family-nav-bar" class="nav-bar"> 
-          <a id="menu-btn"class="menu-btn" href=#main-menu ><img src="src/app-c.png" width="20px" height="20px"/> </a> 
-                	
-          <a  href=#family ><div class="bot-icon-link"><img id="bot-icon" class="bot-icon" width="35px" height="50px" /></div></a>
+<div id="family" class="family" height=100% > 
+ 	<div id="nav-bar" class="nav-bar"> 
+          <a id="menu-btn"class="menu-btn" ><img src="src/menu.png" width="20px" height="20px"/></a>
+          <a  id="bot-link-activity"><div class="bot-icon-link-activity"><img id="bot-icon-activity" class="bot-icon-activity" /></div></a>
     </div>
     
     
-    <div id="family-content"><ol id="family-content-list" class="family-content-list"> </ol>
+    <div id="family-content" class="family-content">
+    <div class="slider-control-container"> 
+    <div id="prev-slide" class="prev-slide" onClick="nextSlider(-1)"><</div>
+    <div id="next-slide" class="next-slide" onClick="nextSlider(1)">></div>
+    </div>
+    <ol id="family-content-list" class="family-content-list"></ol>
+    
+    <div id="dots-container" class="dots-container"> </div>
      </div>
-    <div id="family-footer"> </div> 
+     
+    <div id="family-activity" class="family-activity">
+    <div id="activity-nav" class="activity-nav">
+    <div id="back-btn" class="back-btn"><</div>
+    <div><h1></h1></div>
+    </div>
+    <div id="activity-container" class="activity-container"> </div>
+    </div> 
     
 
 </div>
